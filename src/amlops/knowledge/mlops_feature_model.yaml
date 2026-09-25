@@ -1,0 +1,192 @@
+# Reference feature model for adaptive MLOps pipelines.
+#
+# Top-level categories follow the six variability categories identified by the
+# AdaptiveMLOps variability mapping study (El Hatimi et al., GdR GPL 2025,
+# hal-05127859): Functional, Behavioral, Technical/Tooling, Domain-Specific,
+# Non-Functional, Organizational.
+#
+# The leaf features are an initial industrial proposal by GetCaaS and are meant
+# to be reviewed and extended by the consortium. Cross-tree constraints are
+# "hard" semantic rules; softer know-how lives in best_practices.yaml.
+name: AdaptiveMLOpsPipeline
+root:
+  name: MLOpsPipeline
+  abstract: true
+  children:
+    # ------------------------------------------------------------------ R1-R3
+    - name: Functional
+      category: Functional
+      abstract: true
+      optional: false
+      children:
+        - name: MLTask
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: ClassificationBaseline, description: "Tabular classification with a simple baseline model"}
+            - TabularClassification
+            - Regression
+            - TimeSeriesForecasting
+            - AnomalyDetection
+        - name: Preprocessing
+          optional: false
+          group: or
+          abstract: true
+          children:
+            - {name: Imputation, default: true}
+            - OutlierRemoval
+            - Normalization
+            - FeatureSelection
+            - DimReduction
+        - {name: HyperparameterTuning, description: "M5 Tune Model"}
+        - {name: Explainability, description: "Post-hoc explanations attached to evaluation evidence"}
+    # ------------------------------------------------------------------ R1, R4
+    - name: Behavioral
+      category: Behavioral
+      abstract: true
+      optional: false
+      children:
+        - name: TrainingTrigger
+          optional: false
+          group: or
+          abstract: true
+          children:
+            - Manual
+            - {name: Scheduled, default: true}
+            - DriftTriggered
+            - PerformanceTriggered
+            - NewDataTriggered
+        - name: DeploymentStrategy
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: Recreate, default: true}
+            - BlueGreen
+            - Canary
+            - Shadow
+        - {name: HumanGate, description: "Explicit approval gate in the coordination contract"}
+    # ------------------------------------------------------------------ R3, R5
+    - name: Technical
+      category: Technical
+      abstract: true
+      optional: false
+      children:
+        - name: Orchestrator
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: ArgoWorkflows, default: true}
+            - Kubeflow
+            - Airflow
+        - name: Serving
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: OnlineService, default: true}
+            - KServe
+            - BatchScoring
+        - {name: ExperimentTracking, description: "MLflow-compatible tracking"}
+        - {name: DataVersioning, description: "Dataset versioning (DVC / lakeFS)"}
+        - name: Runtime
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: Kubernetes, default: true}
+            - Serverless
+        - {name: GPU, description: "Accelerated training"}
+    # ------------------------------------------------------------------ R6
+    - name: DomainSpecific
+      category: DomainSpecific
+      abstract: true
+      optional: false
+      children:
+        - name: Domain
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: GenericDomain, default: true}
+            - Industry40IoT
+            - Healthcare
+            - Retail
+            - Finance
+    # ------------------------------------------------------------------ NFR
+    - name: NonFunctional
+      category: NonFunctional
+      abstract: true
+      optional: false
+      children:
+        - name: Objectives
+          optional: false
+          group: or
+          abstract: true
+          children:
+            - {name: CostOptimized, default: true}
+            - CarbonAware
+            - LatencyCritical
+        - name: Monitoring
+          optional: false
+          group: or
+          abstract: true
+          children:
+            - DataDriftMonitoring
+            - ConceptDriftMonitoring
+            - {name: InfraMonitoring, default: true}
+    # ------------------------------------------------------------------ Org.
+    - name: Organizational
+      category: Organizational
+      abstract: true
+      optional: false
+      children:
+        - name: Sovereignty
+          optional: false
+          group: xor
+          abstract: true
+          children:
+            - {name: NoResidencyConstraint, default: true}
+            - EUResidency
+            - SecNumCloud
+        - name: Compliance
+          group: or
+          abstract: true
+          children:
+            - GDPR
+            - AIActHighRisk
+            - HDS
+
+constraints:
+  - id: C1
+    formula: "not (ClassificationBaseline and DimReduction)"
+    rationale: "Example constraint reported in the GdR GPL 2025 poster (baseline classifiers skip dimensionality reduction)."
+  - id: C2
+    formula: "implies(DriftTriggered, DataDriftMonitoring or ConceptDriftMonitoring)"
+    rationale: "A drift trigger needs a drift signal."
+  - id: C3
+    formula: "implies(PerformanceTriggered, ConceptDriftMonitoring)"
+    rationale: "Performance-based retraining needs ground-truth feedback."
+  - id: C4
+    formula: "implies(KServe or Kubeflow or ArgoWorkflows, Kubernetes)"
+    rationale: "Kubernetes-native tools."
+  - id: C5
+    formula: "implies(Canary or Shadow, not BatchScoring)"
+    rationale: "Progressive traffic strategies only apply to online serving."
+  - id: C6
+    formula: "implies(Healthcare, HDS and not NoResidencyConstraint)"
+    rationale: "French health data hosting (HDS) and residency."
+  - id: C7
+    formula: "implies(HDS or SecNumCloud, not NoResidencyConstraint)"
+    rationale: "Qualified hosting implies a residency constraint."
+  - id: C8
+    formula: "implies(AIActHighRisk, HumanGate and Explainability)"
+    rationale: "Human oversight and transparency obligations for high-risk systems."
+  - id: C9
+    formula: "implies(LatencyCritical, not BatchScoring)"
+    rationale: "Batch scoring cannot meet online latency objectives."
+  - id: C10
+    formula: "implies(Healthcare or Finance, Compliance)"
+    rationale: "Regulated domains declare their compliance frame."

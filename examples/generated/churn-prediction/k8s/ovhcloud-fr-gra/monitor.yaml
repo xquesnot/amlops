@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-prediction-monitor
+  namespace: amlops
+  labels: &id001
+    app: churn-prediction-monitor
+    amlops.io/pipeline: churn-prediction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: churn-prediction-monitor
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      nodeSelector:
+        amlops.io/pool: cpu-4
+      containers:
+      - name: monitor
+        image: registry.example.org/amlops/monitor:0.1
+        args:
+        - --step
+        - monitor
+        - --params
+        - '{"signals": ["DataDrift", "Infra"]}'
+        resources:
+          requests:
+            cpu: '4'
+            memory: 16Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: churn-prediction-drift-policy
+  namespace: amlops
+data:
+  policy.json: "{\n  \"pipeline\": \"churn-prediction\",\n  \"signals\": [\n    \"\
+    DataDrift\",\n    \"Infra\"\n  ],\n  \"triggers\": [\n    {\n      \"type\": \"\
+    schedule\",\n      \"cron\": \"0 3 * * 1\",\n      \"detector\": null,\n     \
+    \ \"threshold\": null,\n      \"metric\": null,\n      \"contract\": \"scheduled-retraining\"\
+    \n    },\n    {\n      \"type\": \"drift\",\n      \"cron\": null,\n      \"detector\"\
+    : \"psi\",\n      \"threshold\": 0.2,\n      \"metric\": null,\n      \"contract\"\
+    : \"drift-response\"\n    }\n  ],\n  \"emit_to\": \"http://churn-prediction-monitor-eventsource-svc.amlops.svc:12000\"\
+    \n}"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: churn-prediction-contracts
+  namespace: amlops
+data:
+  contracts.json: "[\n  {\n    \"id\": \"drift-response\",\n    \"ticket_type\": \"\
+    drift\",\n    \"gates\": [\n      {\n        \"id\": \"G1-triage\",\n        \"\
+    actor\": \"ProductOwner\",\n        \"produces\": [\n          \"decision\"\n\
+    \        ],\n        \"approval\": false,\n        \"condition\": null,\n    \
+    \    \"automated_by\": null\n      },\n      {\n        \"id\": \"G2-data\",\n\
+    \        \"actor\": \"DataEngineer\",\n        \"produces\": [\n          \"dataset\"\
+    \n        ],\n        \"approval\": false,\n        \"condition\": null,\n   \
+    \     \"automated_by\": \"validate\"\n      },\n      {\n        \"id\": \"G3-model\"\
+    ,\n        \"actor\": \"ModelEngineer\",\n        \"produces\": [\n          \"\
+    model\",\n          \"evaluation_report\"\n        ],\n        \"approval\": false,\n\
+    \        \"condition\": null,\n        \"automated_by\": \"register\"\n      },\n\
+    \      {\n        \"id\": \"G4-api-impact\",\n        \"actor\": \"SoftwareEngineer\"\
+    ,\n        \"produces\": [\n          \"api_release\"\n        ],\n        \"\
+    approval\": false,\n        \"condition\": \"model.input_schema != api.current_schema\"\
+    ,\n        \"automated_by\": null\n      },\n      {\n        \"id\": \"G5-deploy\"\
+    ,\n        \"actor\": \"OperationsEngineer\",\n        \"produces\": [\n     \
+    \     \"deployment\"\n        ],\n        \"approval\": false,\n        \"condition\"\
+    : null,\n        \"automated_by\": \"deploy\"\n      }\n    ],\n    \"version\"\
+    : \"1\"\n  },\n  {\n    \"id\": \"scheduled-retraining\",\n    \"ticket_type\"\
+    : \"schedule\",\n    \"gates\": [\n      {\n        \"id\": \"G1-data\",\n   \
+    \     \"actor\": \"DataEngineer\",\n        \"produces\": [\n          \"dataset\"\
+    \n        ],\n        \"approval\": false,\n        \"condition\": null,\n   \
+    \     \"automated_by\": \"validate\"\n      },\n      {\n        \"id\": \"G2-model\"\
+    ,\n        \"actor\": \"ModelEngineer\",\n        \"produces\": [\n          \"\
+    model\",\n          \"evaluation_report\"\n        ],\n        \"approval\": false,\n\
+    \        \"condition\": null,\n        \"automated_by\": \"register\"\n      },\n\
+    \      {\n        \"id\": \"G3-deploy\",\n        \"actor\": \"OperationsEngineer\"\
+    ,\n        \"produces\": [\n          \"deployment\"\n        ],\n        \"approval\"\
+    : false,\n        \"condition\": null,\n        \"automated_by\": \"deploy\"\n\
+    \      }\n    ],\n    \"version\": \"1\"\n  }\n]"

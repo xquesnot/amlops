@@ -1,0 +1,19 @@
+# Low-code entry points: a profile is a named partial configuration of the
+# feature model plus default hints. Non-expert users pick a profile and a few
+# objectives; experts start from a profile and override.
+profiles:
+  tabular-classification-continuous:
+    description: "Tabular classifier retrained on data drift, served online."
+    select: [TabularClassification, Imputation, Normalization, DriftTriggered, DataDriftMonitoring,
+             OnlineService, ExperimentTracking]
+  timeseries-forecast-batch:
+    description: "Periodic forecasting with batch scoring."
+    select: [TimeSeriesForecasting, Imputation, Scheduled, BatchScoring, DataDriftMonitoring]
+  anomaly-detection-edge-iot:
+    description: "Anomaly detection on industrial IoT streams, drift-aware."
+    select: [AnomalyDetection, Normalization, OutlierRemoval, Industry40IoT, DriftTriggered,
+             DataDriftMonitoring, OnlineService, LatencyCritical]
+  regulated-health-classifier:
+    description: "Clinical decision support classifier under HDS/AI Act high-risk constraints."
+    select: [TabularClassification, Imputation, Healthcare, HDS, GDPR, AIActHighRisk,
+             PerformanceTriggered, ConceptDriftMonitoring, EUResidency]

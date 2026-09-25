@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amlops"
+version = "0.1.0"
+description = "Variability-aware low-code DSL for adaptive MLOps pipelines, compiled to IaC/PaC and re-deployed across cloud providers (ANR AdaptiveMLOps, industrial partner prototype)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Xavier Quesnot", email = "xavier@getcaas.io"}]
+keywords = ["MLOps", "DSL", "model-driven engineering", "software product lines", "feature models",
+            "infrastructure as code", "carbon-aware computing", "sovereign cloud"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Software Development :: Code Generators",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["pyyaml>=6", "numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+experiments = ["matplotlib>=3.7"]
+
+[project.scripts]
+amlops = "amlops.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+amlops = ["knowledge/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E741"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/amlops/generators/*" = ["E501"]
+"src/amlops/placement/dynamic.py" = ["E501"]
+"experiments/*" = ["E501"]

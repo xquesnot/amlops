@@ -1,0 +1,35 @@
+name: amlops-churn-prediction
+'on':
+  push:
+    paths:
+    - pipelines/**
+    - generated/**
+  workflow_dispatch: {}
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: pip install amlops
+    - name: Re-derive and regenerate (model is the source of truth)
+      run: amlops generate pipelines/churn-prediction.amlops.yaml -o generated/churn-prediction
+        && git diff --exit-code generated/churn-prediction
+    - uses: hashicorp/setup-terraform@v3
+    - run: terraform -chdir=generated/churn-prediction/terraform init -backend=false
+        && terraform -chdir=generated/churn-prediction/terraform validate
+    - name: Schema-check Kubernetes manifests
+      run: docker run --rm -v $PWD:/w ghcr.io/yannh/kubeconform:latest -ignore-missing-schemas
+        -summary /w/generated/churn-prediction/k8s
+  apply:
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v3
+    - run: terraform -chdir=generated/churn-prediction/terraform init && terraform
+        -chdir=generated/churn-prediction/terraform apply -auto-approve

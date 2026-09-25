@@ -1,0 +1,17 @@
+# Expert batch forecasting pipeline, carbon-first.
+amlops: "0.1"
+pipeline: store-demand-forecast
+profile: timeseries-forecast-batch
+features:
+  select: [CarbonAware, DataVersioning, ExperimentTracking, Retail, FeatureSelection]
+data: {source: "s3://retail/sales/", volume_gb: 120}
+objectives: {cost: 0.3, carbon: 0.7}
+steps:
+  - id: train
+    hours: 1.5
+    deferrable_hours: 20
+    params: {model: lightgbm, horizon_days: 28}
+  - id: validate
+    params: {expectations: "ge://retail-suite"}
+triggers:
+  - {type: schedule, cron: "0 2 * * *"}

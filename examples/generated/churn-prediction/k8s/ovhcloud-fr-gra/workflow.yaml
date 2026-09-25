@@ -1,0 +1,156 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: churn-prediction-ovhcloud-fr-gra
+  namespace: amlops
+  labels:
+    amlops.io/pipeline: churn-prediction
+spec:
+  entrypoint: main
+  serviceAccountName: amlops-runner
+  templates:
+  - name: main
+    dag:
+      tasks:
+      - name: ingest
+        template: ingest
+      - name: validate
+        template: validate
+        dependencies:
+        - ingest
+      - name: impute
+        template: impute
+        dependencies:
+        - validate
+      - name: normalize
+        template: normalize
+        dependencies:
+        - impute
+      - name: train
+        template: train
+        dependencies:
+        - normalize
+      - name: evaluate
+        template: evaluate
+        dependencies:
+        - train
+      - name: register
+        template: register
+        dependencies:
+        - evaluate
+      - name: deploy
+        template: deploy
+        dependencies:
+        - register
+  - name: ingest
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/ingest:0.1
+      args:
+      - --step
+      - ingest
+      - --params
+      - '{"source": "s3://datalake/crm/churn.parquet"}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: validate
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/validate:0.1
+      args:
+      - --step
+      - validate
+      - --params
+      - '{}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: impute
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/preprocess:0.1
+      args:
+      - --step
+      - impute
+      - --params
+      - '{"strategy": "median"}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: normalize
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/preprocess:0.1
+      args:
+      - --step
+      - normalize
+      - --params
+      - '{"method": "standard"}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: train
+    nodeSelector:
+      amlops.io/pool: cpu-16
+    container:
+      image: registry.example.org/amlops/train:0.1
+      args:
+      - --step
+      - train
+      - --params
+      - '{}'
+      resources:
+        requests:
+          cpu: '16'
+          memory: 64Gi
+  - name: evaluate
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/evaluate:0.1
+      args:
+      - --step
+      - evaluate
+      - --params
+      - '{}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: register
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/registry-client:0.1
+      args:
+      - --step
+      - register
+      - --params
+      - '{}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi
+  - name: deploy
+    nodeSelector:
+      amlops.io/pool: cpu-4
+    container:
+      image: registry.example.org/amlops/deployer:0.1
+      args:
+      - --step
+      - deploy
+      - --params
+      - '{"strategy": "recreate"}'
+      resources:
+        requests:
+          cpu: '4'
+          memory: 16Gi

@@ -1,0 +1,46 @@
+# The 38 consolidated MLOps activities of SkeltyMLOps
+# (Daoud et al., MLOps@ECAI 2025, hal-05337700; FGCS 185 (2026) 108700).
+# Used as the typing vocabulary of DSL steps and for coverage measurement.
+Plan:
+  P1: Conceptualize Project
+  P2: Define Requirements
+  P3: Formulate ML Problem
+  P4: Analyze Data Sources
+  P5: Design Architecture
+  P6: Plan Project
+  P7: Initialize Repositories
+Data:
+  D1: Collect Data
+  D2: Ingest Data
+  D3: Preprocess Data
+  D4: Validate Data
+  D5: Engineer Features
+  D6: Label Data
+  D7: Analyze Data
+  D8: Manage Data
+Model:
+  M1: Run Experiments
+  M2: Design Model
+  M3: Develop Model
+  M4: Train Model
+  M5: Tune Model
+  M6: Validate Model
+  M7: Evaluate/Test Model
+  M8: Optimize Model
+  M9: Register Model
+Soft:
+  S1: Develop Code
+  S2: Build Components
+  S3: Package Artifacts
+  S4: Test Solution
+  S5: Release Solution
+Ops:
+  O1: Configure CI/CD
+  O2: Manage Infrastructure
+  O3: Execute Pipelines
+  O4: Deploy to Testing
+  O5: Deploy to Production
+  O6: Serve Inference
+  O7: Monitor Performance
+  O8: Trigger Retraining
+  O9: Operate & Maintain

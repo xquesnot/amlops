@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "amlops: a variability-aware low-code DSL for adaptive MLOps pipelines"
+version: 0.1.0
+date-released: 2026-09-25
+license: Apache-2.0
+authors:
+  - family-names: Quesnot
+    given-names: Xavier
+    affiliation: GetCaaS
+keywords: [MLOps, DSL, feature models, infrastructure as code, carbon-aware computing]
+notes: "Part of the ANR AdaptiveMLOps project (ANR-24-IAS2-0004)."

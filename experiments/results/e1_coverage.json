@@ -1,0 +1,236 @@
+{
+  "activities_by_dimension": {
+    "Plan": {
+      "covered": 0,
+      "total": 7,
+      "missing": [
+        "P1 Conceptualize Project",
+        "P2 Define Requirements",
+        "P3 Formulate ML Problem",
+        "P4 Analyze Data Sources",
+        "P5 Design Architecture",
+        "P6 Plan Project",
+        "P7 Initialize Repositories"
+      ]
+    },
+    "Data": {
+      "covered": 5,
+      "total": 8,
+      "missing": [
+        "D1 Collect Data",
+        "D6 Label Data",
+        "D7 Analyze Data"
+      ]
+    },
+    "Model": {
+      "covered": 5,
+      "total": 9,
+      "missing": [
+        "M1 Run Experiments",
+        "M2 Design Model",
+        "M3 Develop Model",
+        "M8 Optimize Model"
+      ]
+    },
+    "Soft": {
+      "covered": 2,
+      "total": 5,
+      "missing": [
+        "S1 Develop Code",
+        "S2 Build Components",
+        "S3 Package Artifacts"
+      ]
+    },
+    "Ops": {
+      "covered": 9,
+      "total": 9,
+      "missing": []
+    }
+  },
+  "per_case": {
+    "churn": [
+      "D2",
+      "D3",
+      "D4",
+      "D8",
+      "M4",
+      "M7",
+      "M9",
+      "O1",
+      "O2",
+      "O3",
+      "O5",
+      "O6",
+      "O7",
+      "O8",
+      "O9",
+      "S4",
+      "S5"
+    ],
+    "health": [
+      "D2",
+      "D3",
+      "D4",
+      "D8",
+      "M4",
+      "M6",
+      "M7",
+      "M9",
+      "O1",
+      "O2",
+      "O3",
+      "O5",
+      "O6",
+      "O7",
+      "O8",
+      "O9",
+      "S4",
+      "S5"
+    ],
+    "maintenance": [
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D8",
+      "M4",
+      "M5",
+      "M7",
+      "M9",
+      "O1",
+      "O2",
+      "O3",
+      "O4",
+      "O5",
+      "O6",
+      "O7",
+      "O8",
+      "O9",
+      "S4",
+      "S5"
+    ],
+    "retail": [
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D8",
+      "M4",
+      "M7",
+      "M9",
+      "O1",
+      "O2",
+      "O3",
+      "O5",
+      "O6",
+      "O7",
+      "O8",
+      "O9",
+      "S4",
+      "S5"
+    ]
+  },
+  "feature_effect": {
+    "ClassificationBaseline": null,
+    "TabularClassification": false,
+    "Regression": null,
+    "TimeSeriesForecasting": null,
+    "AnomalyDetection": null,
+    "Imputation": true,
+    "OutlierRemoval": true,
+    "Normalization": true,
+    "FeatureSelection": true,
+    "DimReduction": true,
+    "HyperparameterTuning": true,
+    "Explainability": true,
+    "Manual": true,
+    "Scheduled": true,
+    "DriftTriggered": true,
+    "PerformanceTriggered": true,
+    "NewDataTriggered": true,
+    "Recreate": true,
+    "BlueGreen": true,
+    "Canary": true,
+    "Shadow": true,
+    "HumanGate": true,
+    "ArgoWorkflows": false,
+    "Kubeflow": false,
+    "Airflow": false,
+    "OnlineService": true,
+    "KServe": null,
+    "BatchScoring": null,
+    "ExperimentTracking": false,
+    "DataVersioning": false,
+    "Kubernetes": false,
+    "Serverless": false,
+    "GPU": true,
+    "GenericDomain": true,
+    "Industry40IoT": false,
+    "Healthcare": true,
+    "Retail": false,
+    "Finance": true,
+    "CostOptimized": true,
+    "CarbonAware": true,
+    "LatencyCritical": true,
+    "DataDriftMonitoring": true,
+    "ConceptDriftMonitoring": true,
+    "InfraMonitoring": true,
+    "NoResidencyConstraint": true,
+    "EUResidency": true,
+    "SecNumCloud": true,
+    "GDPR": true,
+    "AIActHighRisk": true,
+    "HDS": true
+  },
+  "per_category": {
+    "Functional": {
+      "leaves": 12,
+      "tested": 8,
+      "effective": 7,
+      "no_effect": [
+        "TabularClassification"
+      ]
+    },
+    "Behavioral": {
+      "leaves": 10,
+      "tested": 10,
+      "effective": 10,
+      "no_effect": []
+    },
+    "Technical": {
+      "leaves": 11,
+      "tested": 9,
+      "effective": 2,
+      "no_effect": [
+        "ArgoWorkflows",
+        "Kubeflow",
+        "Airflow",
+        "ExperimentTracking",
+        "DataVersioning",
+        "Kubernetes",
+        "Serverless"
+      ]
+    },
+    "DomainSpecific": {
+      "leaves": 5,
+      "tested": 5,
+      "effective": 3,
+      "no_effect": [
+        "Industry40IoT",
+        "Retail"
+      ]
+    },
+    "NonFunctional": {
+      "leaves": 6,
+      "tested": 6,
+      "effective": 6,
+      "no_effect": []
+    },
+    "Organizational": {
+      "leaves": 6,
+      "tested": 6,
+      "effective": 6,
+      "no_effect": []
+    }
+  }
+}

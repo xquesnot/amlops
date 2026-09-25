@@ -1,0 +1,49 @@
+# Soft, documented know-how evaluated against a configuration.
+# Each rule fires when `when` evaluates to true on the selected features.
+# Rules are advisory (severity: warning | info); hard rules live in the FM.
+rules:
+  - id: BP01
+    when: "DriftTriggered and not DataVersioning"
+    severity: warning
+    advice: "Enable DataVersioning so that every automatic retraining is reproducible and auditable."
+    source: "Kreuzberger et al. 2023 (IEEE Access); Daoud et al. 2026 (FGCS), traceability capability"
+    fix: {select: [DataVersioning]}
+  - id: BP02
+    when: "(DriftTriggered or PerformanceTriggered) and Recreate"
+    severity: warning
+    advice: "Automatically retrained models should be rolled out progressively (Canary, Shadow or BlueGreen)."
+    source: "Industrial practice (GetCaaS); progressive delivery"
+    fix: {select: [Canary], deselect: [Recreate]}
+  - id: BP03
+    when: "not ExperimentTracking"
+    severity: info
+    advice: "Track experiments (parameters, metrics, artefacts) to support M1/M7 evidence."
+    source: "Kreuzberger et al. 2023"
+    fix: {select: [ExperimentTracking]}
+  - id: BP04
+    when: "(Healthcare or Finance) and (DriftTriggered or PerformanceTriggered) and not HumanGate"
+    severity: warning
+    advice: "Regulated domain with automatic retraining: add a human approval gate in the drift-response contract."
+    source: "Daoud et al. 2026 (FGCS), coordination contracts with human gates"
+    fix: {select: [HumanGate]}
+  - id: BP05
+    when: "CarbonAware and GPU"
+    severity: info
+    advice: "Declare training steps as deferrable so they can be scheduled in low-carbon windows."
+    source: "Carbon-aware computing literature; this work (Sect. dynamic placement)"
+  - id: BP06
+    when: "ConceptDriftMonitoring"
+    severity: info
+    advice: "Concept-drift detection needs ground truth: plan a label feedback path (activity D6 Label Data)."
+    source: "Gama et al. 2014 (ACM CSUR) concept drift survey"
+  - id: BP07
+    when: "Scheduled and not (DataDriftMonitoring or ConceptDriftMonitoring)"
+    severity: info
+    advice: "Scheduled-only retraining without drift monitoring may retrain uselessly or too late; add DataDriftMonitoring."
+    source: "Industrial practice (GetCaaS)"
+    fix: {select: [DataDriftMonitoring]}
+  - id: BP08
+    when: "LatencyCritical and Serverless"
+    severity: warning
+    advice: "Cold starts of serverless runtimes can break latency objectives; prefer Kubernetes with min replicas > 0."
+    source: "Industrial practice (GetCaaS)"

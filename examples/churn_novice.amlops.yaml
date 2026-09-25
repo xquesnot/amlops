@@ -1,0 +1,6 @@
+# Non-expert model: a profile and two objective weights.
+amlops: "0.1"
+pipeline: churn-prediction
+profile: tabular-classification-continuous
+data: {source: "s3://datalake/crm/churn.parquet", volume_gb: 40}
+objectives: {cost: 0.6, carbon: 0.4}

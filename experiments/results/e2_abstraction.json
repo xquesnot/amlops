@@ -1,0 +1,46 @@
+{
+  "churn": {
+    "dsl_lines": 5,
+    "generated_lines": 396,
+    "ratio": 79.2,
+    "steps": 10,
+    "user_step_entries": 0,
+    "features": 33,
+    "findings": 2,
+    "files": 7,
+    "locations": 1
+  },
+  "health": {
+    "dsl_lines": 5,
+    "generated_lines": 403,
+    "ratio": 80.6,
+    "steps": 11,
+    "user_step_entries": 0,
+    "features": 37,
+    "findings": 3,
+    "files": 7,
+    "locations": 1
+  },
+  "maintenance": {
+    "dsl_lines": 28,
+    "generated_lines": 513,
+    "ratio": 18.3,
+    "steps": 14,
+    "user_step_entries": 3,
+    "features": 39,
+    "findings": 1,
+    "files": 7,
+    "locations": 2
+  },
+  "retail": {
+    "dsl_lines": 16,
+    "generated_lines": 364,
+    "ratio": 22.8,
+    "steps": 10,
+    "user_step_entries": 2,
+    "features": 34,
+    "findings": 0,
+    "files": 5,
+    "locations": 1
+  }
+}

@@ -1,0 +1,54 @@
+# ILLUSTRATIVE provider catalogue used by the placement optimiser and the
+# experiments. Prices, power draws, egress fees and grid carbon intensities are
+# ORDER-OF-MAGNITUDE placeholders chosen to be plausible, NOT quotes. Replace
+# them with contractual prices (e.g. the GetCaaS/Scaleway price list) and
+# measured or published intensity data (e.g. Electricity Maps, RTE eco2mix)
+# before drawing any operational conclusion. Qualification labels
+# (secnumcloud, hds) must be checked against the current ANSSI / ANS lists.
+version: "2026-09-illustrative"
+units:
+  price: EUR/hour
+  egress: EUR/GB
+  power: W (average draw at typical load, incl. accelerator)
+  grid: gCO2e/kWh (annual average, location-based)
+  latency: ms (median RTT from end users located in France)
+
+instance_types:
+  cpu-4:   {vcpu: 4,  mem_gb: 16,  gpu: 0, base_price: 0.10, power_w: 90}
+  cpu-16:  {vcpu: 16, mem_gb: 64,  gpu: 0, base_price: 0.40, power_w: 250}
+  gpu-l4:  {vcpu: 8,  mem_gb: 48,  gpu: 1, base_price: 0.85, power_w: 350}
+
+providers:
+  scaleway:
+    price_factor: 1.00
+    egress_eur_gb: 0.01
+    labels: [EU]
+    regions:
+      fr-par: {country: FR, grid: 56,  pue: 1.25, latency_ms: 5,  price_factor: 1.00}
+      nl-ams: {country: NL, grid: 330, pue: 1.25, latency_ms: 14, price_factor: 1.00}
+      pl-waw: {country: PL, grid: 650, pue: 1.30, latency_ms: 30, price_factor: 0.90}
+  ovhcloud:
+    price_factor: 0.95
+    egress_eur_gb: 0.00
+    labels: [EU]
+    regions:
+      fr-gra: {country: FR, grid: 56,  pue: 1.30, latency_ms: 8,  price_factor: 1.00}
+      de-lim: {country: DE, grid: 380, pue: 1.30, latency_ms: 16, price_factor: 1.00}
+  outscale:
+    price_factor: 1.50
+    egress_eur_gb: 0.03
+    labels: [EU, SecNumCloud, HDS]
+    regions:
+      fr-gouv: {country: FR, grid: 56, pue: 1.35, latency_ms: 6, price_factor: 1.00}
+  hyperscaler:
+    price_factor: 1.35
+    egress_eur_gb: 0.09
+    labels: [EU]
+    regions:
+      fr-paris:  {country: FR, grid: 56,  pue: 1.15, latency_ms: 6,  price_factor: 1.05}
+      de-fra:    {country: DE, grid: 380, pue: 1.15, latency_ms: 15, price_factor: 1.00}
+      us-east:   {country: US, grid: 380, pue: 1.15, latency_ms: 85, price_factor: 0.80, labels_override: []}
+
+migration:
+  fixed_cost_eur: 2.0      # operator time / downtime penalty per migration
+  state_gb: 20             # model + feature cache moved on migration

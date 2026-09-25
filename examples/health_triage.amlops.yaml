@@ -1,0 +1,6 @@
+# Regulated case: HDS / AI Act high-risk constraints come from the profile.
+amlops: "0.1"
+pipeline: triage-support
+profile: regulated-health-classifier
+data: {source: "sftp://hospital/extracts/triage", volume_gb: 15}
+objectives: {cost: 0.5, carbon: 0.3, latency: 0.2}

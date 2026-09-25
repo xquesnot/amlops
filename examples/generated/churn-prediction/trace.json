@@ -1,0 +1,167 @@
+{
+  "pipeline": "churn-prediction",
+  "configuration": [
+    "ArgoWorkflows",
+    "Behavioral",
+    "CostOptimized",
+    "DataDriftMonitoring",
+    "DeploymentStrategy",
+    "Domain",
+    "DomainSpecific",
+    "DriftTriggered",
+    "ExperimentTracking",
+    "Functional",
+    "GenericDomain",
+    "Imputation",
+    "InfraMonitoring",
+    "Kubernetes",
+    "MLOpsPipeline",
+    "MLTask",
+    "Monitoring",
+    "NoResidencyConstraint",
+    "NonFunctional",
+    "Normalization",
+    "Objectives",
+    "OnlineService",
+    "Orchestrator",
+    "Organizational",
+    "Preprocessing",
+    "Recreate",
+    "Runtime",
+    "Scheduled",
+    "Serving",
+    "Sovereignty",
+    "TabularClassification",
+    "Technical",
+    "TrainingTrigger"
+  ],
+  "placement": {
+    "objective": 1.0855,
+    "cost_eur_month": 209.99,
+    "egress_eur_month": 0.0,
+    "carbon_kg_month": 14.45,
+    "serving_latency_ms": 8.0,
+    "optimal": true,
+    "nodes": 91,
+    "providers": [
+      "ovhcloud/fr-gra"
+    ],
+    "assignment": {
+      "ingest": "ovhcloud/fr-gra/cpu-4",
+      "validate": "ovhcloud/fr-gra/cpu-4",
+      "impute": "ovhcloud/fr-gra/cpu-4",
+      "normalize": "ovhcloud/fr-gra/cpu-4",
+      "train": "ovhcloud/fr-gra/cpu-16",
+      "evaluate": "ovhcloud/fr-gra/cpu-4",
+      "register": "ovhcloud/fr-gra/cpu-4",
+      "deploy": "ovhcloud/fr-gra/cpu-4",
+      "serve": "ovhcloud/fr-gra/cpu-4",
+      "monitor": "ovhcloud/fr-gra/cpu-4"
+    }
+  },
+  "files": [
+    {
+      "path": ".github/workflows/amlops-churn-prediction.yaml",
+      "lines": 35,
+      "realises": [
+        "pipeline"
+      ],
+      "activities": [
+        "O1",
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "path": "k8s/ovhcloud-fr-gra/workflow.yaml",
+      "lines": 156,
+      "realises": [
+        "step:ingest",
+        "step:validate",
+        "step:impute",
+        "step:normalize",
+        "step:train",
+        "step:evaluate",
+        "step:register",
+        "step:deploy"
+      ],
+      "activities": [
+        "D2",
+        "D3",
+        "D4",
+        "M4",
+        "M7",
+        "M9",
+        "O3",
+        "O5"
+      ]
+    },
+    {
+      "path": "k8s/ovhcloud-fr-gra/triggers.yaml",
+      "lines": 50,
+      "realises": [
+        "trigger:schedule",
+        "trigger:drift"
+      ],
+      "activities": [
+        "O3",
+        "O8"
+      ]
+    },
+    {
+      "path": "k8s/ovhcloud-fr-gra/serve.yaml",
+      "lines": 43,
+      "realises": [
+        "step:serve"
+      ],
+      "activities": [
+        "O6"
+      ]
+    },
+    {
+      "path": "k8s/ovhcloud-fr-gra/monitor.yaml",
+      "lines": 83,
+      "realises": [
+        "step:monitor",
+        "contracts",
+        "triggers"
+      ],
+      "activities": [
+        "O7",
+        "O9"
+      ]
+    },
+    {
+      "path": "terraform/main.tf",
+      "lines": 19,
+      "realises": [
+        "step:ingest",
+        "step:validate",
+        "step:impute",
+        "step:normalize",
+        "step:evaluate",
+        "step:register",
+        "step:deploy",
+        "step:serve",
+        "step:monitor",
+        "step:train",
+        "placement"
+      ],
+      "activities": [
+        "D8",
+        "M9",
+        "O2"
+      ]
+    },
+    {
+      "path": "terraform/modules/ovhcloud-k8s/main.tf",
+      "lines": 10,
+      "realises": [
+        "provider:ovhcloud"
+      ],
+      "activities": [
+        "O2"
+      ]
+    }
+  ]
+}

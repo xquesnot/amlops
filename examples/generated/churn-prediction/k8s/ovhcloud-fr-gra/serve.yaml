@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-prediction-serve
+  namespace: amlops
+  labels: &id001
+    app: churn-prediction-serve
+    amlops.io/pipeline: churn-prediction
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: churn-prediction-serve
+  template:
+    metadata:
+      labels: *id001
+    spec:
+      nodeSelector:
+        amlops.io/pool: cpu-4
+      containers:
+      - name: serve
+        image: registry.example.org/amlops/serve:0.1
+        args:
+        - --step
+        - serve
+        - --params
+        - '{"runtime": "onlineservice"}'
+        resources:
+          requests:
+            cpu: '4'
+            memory: 16Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: churn-prediction-serve
+  namespace: amlops
+spec:
+  selector:
+    app: churn-prediction-serve
+  ports:
+  - port: 80
+    targetPort: 8080

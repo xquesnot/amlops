@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: churn-prediction-scheduled
+  namespace: amlops
+spec:
+  schedule: 0 3 * * 1
+  concurrencyPolicy: Forbid
+  workflowSpec:
+    workflowTemplateRef:
+      name: churn-prediction-ovhcloud-fr-gra
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: churn-prediction-drift
+  namespace: amlops
+  annotations:
+    amlops.io/contract: drift-response
+spec:
+  dependencies:
+  - name: drift
+    eventSourceName: churn-prediction-monitor
+    eventName: drift
+  triggers:
+  - template:
+      name: retrain
+      argoWorkflow:
+        operation: submit
+        source:
+          resource:
+            apiVersion: argoproj.io/v1alpha1
+            kind: Workflow
+            metadata:
+              generateName: churn-prediction-drift-
+            spec:
+              workflowTemplateRef:
+                name: churn-prediction-ovhcloud-fr-gra
+---
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: churn-prediction-monitor
+  namespace: amlops
+spec:
+  webhook:
+    drift:
+      port: '12000'
+      endpoint: /drift
+      method: POST

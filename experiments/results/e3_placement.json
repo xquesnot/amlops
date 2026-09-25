@@ -1,0 +1,263 @@
+{
+  "churn": {
+    "optimised": {
+      "cost": 209.98799999999997,
+      "carbon": 14.450508800000003,
+      "J": 1.0855072463768116,
+      "locations": [
+        "ovhcloud/fr-gra"
+      ],
+      "nodes": 91,
+      "seconds": 0.0005985529999747996,
+      "optimal": true
+    },
+    "cost_only": {
+      "cost": 198.93600000000004,
+      "carbon": 168.10092000000003,
+      "J": 5.860081277041865
+    },
+    "single_provider": {
+      "scaleway": {
+        "cost": 221.04,
+        "carbon": 13.894720000000001,
+        "J": 1.1014492753623188
+      },
+      "ovhcloud": {
+        "cost": 209.98799999999997,
+        "carbon": 14.450508800000003,
+        "J": 1.0855072463768116
+      },
+      "outscale": {
+        "cost": 331.56,
+        "carbon": 15.0062976,
+        "J": 1.4695652173913043
+      },
+      "hyperscaler": {
+        "cost": 313.3242,
+        "carbon": 12.7831424,
+        "J": 1.345
+      }
+    },
+    "best_single_provider": "ovhcloud"
+  },
+  "health": {
+    "optimised": {
+      "cost": 331.53,
+      "carbon": 15.0049368,
+      "J": 1.0,
+      "locations": [
+        "outscale/fr-gouv"
+      ],
+      "nodes": 12,
+      "seconds": 0.0002289799999743991,
+      "optimal": true
+    },
+    "cost_only": {
+      "cost": 331.53,
+      "carbon": 15.0382008,
+      "J": 1.0006650611150858
+    },
+    "single_provider": {
+      "scaleway": null,
+      "ovhcloud": null,
+      "outscale": {
+        "cost": 331.53,
+        "carbon": 15.0049368,
+        "J": 1.0
+      },
+      "hyperscaler": null
+    },
+    "best_single_provider": "outscale"
+  },
+  "maintenance": {
+    "optimised": {
+      "cost": 305.376,
+      "carbon": 18.891913600000002,
+      "J": 1.026874288729946,
+      "locations": [
+        "ovhcloud/fr-gra",
+        "scaleway/fr-par"
+      ],
+      "nodes": 343403,
+      "seconds": 0.6447048840000207,
+      "optimal": true
+    },
+    "cost_only": {
+      "cost": 290.152,
+      "carbon": 25.63158,
+      "J": 1.2684570661056722
+    },
+    "single_provider": {
+      "scaleway": {
+        "cost": 306.08,
+        "carbon": 18.87284,
+        "J": 1.027453198427495
+      },
+      "ovhcloud": {
+        "cost": 290.776,
+        "carbon": 19.627753600000002,
+        "J": 1.1420805385061203
+      },
+      "outscale": {
+        "cost": 459.12,
+        "carbon": 20.3826672,
+        "J": 1.3131797976412427
+      },
+      "hyperscaler": null
+    },
+    "best_single_provider": "scaleway"
+  },
+  "retail": {
+    "optimised": {
+      "cost": 77.34,
+      "carbon": 4.82622,
+      "J": 1.0942028985507246,
+      "locations": [
+        "scaleway/fr-par"
+      ],
+      "nodes": 91,
+      "seconds": 0.0007435580000105801,
+      "optimal": true
+    },
+    "cost_only": {
+      "cost": 69.60600000000001,
+      "carbon": 58.81707000000001,
+      "J": 9.572705860541143
+    },
+    "single_provider": {
+      "scaleway": {
+        "cost": 77.34,
+        "carbon": 4.82622,
+        "J": 1.0942028985507246
+      },
+      "ovhcloud": {
+        "cost": 73.473,
+        "carbon": 5.019268800000001,
+        "J": 1.1079710144927535
+      },
+      "outscale": {
+        "cost": 116.01,
+        "carbon": 5.2123176,
+        "J": 1.3217391304347825
+      },
+      "hyperscaler": {
+        "cost": 109.62944999999999,
+        "carbon": 4.4401224,
+        "J": 1.1724999999999999
+      }
+    },
+    "best_single_provider": "scaleway"
+  },
+  "scalability": [
+    {
+      "steps": 10,
+      "nodes": 91,
+      "seconds": 0.001,
+      "optimal": true
+    },
+    {
+      "steps": 15,
+      "nodes": 136,
+      "seconds": 0.001,
+      "optimal": true
+    },
+    {
+      "steps": 20,
+      "nodes": 181,
+      "seconds": 0.001,
+      "optimal": true
+    },
+    {
+      "steps": 25,
+      "nodes": 226,
+      "seconds": 0.001,
+      "optimal": true
+    },
+    {
+      "steps": 30,
+      "nodes": 271,
+      "seconds": 0.002,
+      "optimal": true
+    }
+  ],
+  "pareto": {
+    "churn": [
+      {
+        "cost": 198.93600000000004,
+        "carbon": 168.10092000000003,
+        "locations": [
+          "scaleway/pl-waw"
+        ]
+      },
+      {
+        "cost": 209.98799999999997,
+        "carbon": 14.450508800000003,
+        "locations": [
+          "ovhcloud/fr-gra"
+        ]
+      },
+      {
+        "cost": 220.943,
+        "carbon": 13.898376800000001,
+        "locations": [
+          "ovhcloud/fr-gra",
+          "scaleway/fr-par"
+        ]
+      },
+      {
+        "cost": 312.55424999999997,
+        "carbon": 12.790455999999999,
+        "locations": [
+          "hyperscaler/fr-paris",
+          "scaleway/fr-par"
+        ]
+      }
+    ],
+    "retail": [
+      {
+        "cost": 69.60600000000001,
+        "carbon": 58.81707000000001,
+        "locations": [
+          "scaleway/pl-waw"
+        ]
+      },
+      {
+        "cost": 73.473,
+        "carbon": 5.019268800000001,
+        "locations": [
+          "ovhcloud/fr-gra"
+        ]
+      },
+      {
+        "cost": 77.203,
+        "carbon": 4.8312768,
+        "locations": [
+          "ovhcloud/fr-gra",
+          "scaleway/fr-par"
+        ]
+      },
+      {
+        "cost": 77.34,
+        "carbon": 4.82622,
+        "locations": [
+          "scaleway/fr-par"
+        ]
+      },
+      {
+        "cost": 108.5255,
+        "carbon": 4.450235999999999,
+        "locations": [
+          "hyperscaler/fr-paris",
+          "scaleway/fr-par"
+        ]
+      },
+      {
+        "cost": 109.62944999999999,
+        "carbon": 4.4401224,
+        "locations": [
+          "hyperscaler/fr-paris"
+        ]
+      }
+    ]
+  }
+}

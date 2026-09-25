@@ -1,0 +1,30 @@
+# Expert model: starts from a profile, then refines features, steps,
+# placement and parameters. Illustrative industrial IoT case.
+amlops: "0.1"
+pipeline: predictive-maintenance
+profile: anomaly-detection-edge-iot
+best_practices: true            # apply the advisor's automatic fixes
+features:
+  select: [CarbonAware, GPU, HyperparameterTuning, EUResidency]
+data: {source: "kafka://plant-7/vibration", volume_gb: 200, model_gb: 2}
+objectives: {cost: 0.4, carbon: 0.4, latency: 0.2}
+placement:
+  allowed_providers: [scaleway, ovhcloud, outscale]
+  colocate: [[serve, monitor]]
+steps:
+  - id: window_features           # new domain-specific step (extension)
+    kind: transform
+    activity: D5
+    after: remove_outliers
+    image: "registry.example.org/plant/window-features:1.2"
+    params: {window_s: 30, stats: [rms, kurtosis, peak]}
+  - id: train
+    hours: 3
+    params: {algorithm: isolation_forest, n_estimators: 400}
+  - id: tune
+    params: {trials: 60}
+triggers:
+  - {type: drift, detector: ks, threshold: 0.1}
+overrides:
+  steps.evaluate.params.min_precision_at_k: 0.9
+  steps.serve.replicas: 3
