@@ -1,4 +1,5 @@
 # Contributing
+* After cloning, run `sh scripts/install-hooks.sh` (commit-message attribution policy).
 * `pip install -e ".[dev]"`, then `ruff check src tests` and `pytest -q` must pass.
 * Knowledge changes (features, constraints, rules) need a rationale and a source in the YAML.
 * New generators: register with `@register_generator("name")`, annotate every

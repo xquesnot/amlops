@@ -8,3 +8,8 @@ paper/*.log
 paper/*.fls
 paper/*.fdb_latexmk
 paper/*.out
+
+# fichiers de configuration d'outils locaux (ne pas versionner)
+AGENTS.md
+CLAUDE.md
+.claude/

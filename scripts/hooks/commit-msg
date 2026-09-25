@@ -1,0 +1,11 @@
+#!/bin/sh
+# Politique d'attribution : seuls les contributeurs @getcaas.io peuvent figurer
+# en co-auteurs, et aucun message ne doit contenir de mention d'outil de génération.
+if grep -iE "^co-authored-by:" "$1" | grep -viqE "@getcaas\.io>"; then
+  echo "Commit refusé : co-auteur hors getcaas.io." >&2
+  exit 1
+fi
+if grep -qiE "generated with|🤖" "$1"; then
+  echo "Commit refusé : mention d'outil de génération dans le message." >&2
+  exit 1
+fi

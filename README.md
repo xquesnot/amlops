@@ -70,7 +70,8 @@ src/amlops/
   adaptation/    PSI/KS drift detection, executable coordination contracts, MAPE-K loop
 examples/        four illustrative case studies (+ generated output of one)
 experiments/     run_all.py and results/*.json
-paper/           LaTeX draft; generated/ tables & macros; figures/
+paper/           LaTeX draft (main.tex, EN) and French reading copy (main_fr.tex/.pdf); generated/; figures/
+scripts/         git hooks (run `sh scripts/install-hooks.sh` after cloning)
 ```
 
 ## Citation / licence
