@@ -1,5 +1,7 @@
 # amlops — Adaptive MLOps DSL (ANR AdaptiveMLOps, industrial partner prototype)
 
+**English** | [Français](README.fr.md)
+
 `amlops` compiles a short, variability-aware description of an MLOps pipeline into
 Infrastructure- and Platform-as-Code (Terraform, Argo Workflows / Argo Events,
 Kubernetes, CI), places its steps across several cloud providers under cost /
@@ -18,6 +20,50 @@ hal-05337700; FGCS 185 (2026) 108700).
 > draws and grid intensities, and the dynamic experiments use *synthetic* traces.
 > Generated Terraform/Kubernetes artefacts are parsed and unit-tested but have not
 > been deployed. The feature model and rules are a proposal awaiting consortium review.
+
+## The AdaptiveMLOps project
+
+| | |
+|---|---|
+| Title | *MLOps Adaptatif* — **AdaptiveMLOps** |
+| Funding | French National Research Agency (ANR), grant **ANR-24-IAS2-0004** |
+| Call | AAP 2024 *Thématiques Spécifiques en Intelligence Artificielle* (TSIA) — Machine Learning Operations, Software Engineering for AI |
+| ANR contribution | €489,646 |
+| Start / duration | September 2024 / 48 months |
+| Coordinator | Sylvain Vauttier (EuroMov Digital Health in Motion) |
+
+**Objective.** MLOps extends DevOps principles to data science and machine
+learning so that AI models are trained, deployed and operated as ordinary software
+components. A key issue is the *continuous training* of models to adapt them to
+changes observed in production data (data and concept drift). AdaptiveMLOps studies
+how domain-engineering concepts (feature models, software product lines) can
+capture the commonalities of MLOps processes and document best practices, and uses
+this knowledge to guide the design of new pipelines through a model-driven
+approach: a Domain Specific Language that is (i) generic and extensible, (ii)
+abstract enough for non-expert users, (iii) open to fine-tuning by experts, and
+(iv) pivotal to generate Platform-as-Code / Infrastructure-as-Code. The project
+targets automatic and dynamic (re)deployment of pipeline components hosted by
+several providers, optimising efficiency, cost and environmental footprint.
+Proposals are prototyped and validated through proofs of concept on the
+industrial partner's cloud platform.
+
+**Consortium.**
+
+| Partner | Role | Website |
+|---|---|---|
+| EuroMov Digital Health in Motion (EuroMov DHM) — Université de Montpellier & IMT Mines Alès | Coordinator | <https://dhm.euromov.eu/> |
+| LIRMM — Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier (Université de Montpellier, CNRS) | Academic partner | <https://www.lirmm.fr/> |
+| GetCaaS | Industrial partner (this repository) | <https://www.getcaas.io/> |
+
+**Official links.**
+- ANR project page: <https://anr.fr/Projet-ANR-24-IAS2-0004>
+- Project website: <https://adaptivemlops.wp.imt.fr/>
+- IMT Mines Alès: <https://www.imt-mines-ales.fr/> — Université de Montpellier: <https://www.umontpellier.fr/> — CNRS: <https://www.cnrs.fr/>
+
+**Consortium publications this work builds on.**
+- C. El Hatimi et al., *Toward Adaptive MLOps: Variability Mapping and Modeling*, GdR GPL national days, Pau, 2025 — <https://hal.science/hal-05127859>
+- C. Daoud et al., *SkeltyMLOps: Orchestrating Collaborative MLOps Activities*, MLOps25 @ ECAI 2025, CEUR-WS vol. 4109 — <https://hal.science/hal-05337700>
+- C. Daoud et al., *A reference architecture for an orchestrated collaborative MLOps*, Future Generation Computer Systems 185 (2026) 108700 — <https://doi.org/10.1016/j.future.2026.108700>
 
 ## Quick start
 
@@ -70,11 +116,15 @@ src/amlops/
   adaptation/    PSI/KS drift detection, executable coordination contracts, MAPE-K loop
 examples/        four illustrative case studies (+ generated output of one)
 experiments/     run_all.py and results/*.json
-paper/           LaTeX draft (main.tex, EN) and French reading copy (main_fr.tex/.pdf); generated/; figures/
+paper/           LaTeX sources (main.tex, EN; main_fr.tex, FR); generated/; figures/
 scripts/         git hooks (run `sh scripts/install-hooks.sh` after cloning)
 ```
 
 ## Citation / licence
 Apache-2.0 © 2026 GetCaaS SARL. See `CITATION.cff`. The accompanying paper
-(`paper/main.pdf`) is a draft for consortium review — do not circulate before the
+(`paper/main.tex`) is a draft for consortium review — do not circulate before the
 publication review foreseen by the consortium agreement.
+
+## Acknowledgements
+This work is supported by the French National Research Agency (ANR) under grant
+ANR-24-IAS2-0004 (AdaptiveMLOps).
