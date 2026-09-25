@@ -95,6 +95,10 @@ Detailed scientific and software architecture, with diagrams of the feature mode
 the process line, the placement problem, the adaptation loop and the coordination
 contracts: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
+## Roadmap
+
+Planned work for the second half of the project (M25 to M48), by axis and priority: [ROADMAP.md](ROADMAP.md).
+
 ## Quick start
 
 ```bash

@@ -100,6 +100,10 @@ model, de la ligne de processus, du problème de placement, de la boucle
 d'adaptation et des contrats de coordination :
 [docs/ARCHITECTURE.fr.md](docs/ARCHITECTURE.fr.md).
 
+## Feuille de route
+
+Travaux prévus pour la seconde moitié du projet (M25 à M48), par axe et par priorité : [ROADMAP.fr.md](ROADMAP.fr.md).
+
 ## Démarrage rapide
 
 ```bash
