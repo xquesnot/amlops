@@ -1,4 +1,11 @@
-# amlops — DSL MLOps adaptatif (ANR AdaptiveMLOps, prototype du partenaire industriel)
+# amlops : DSL MLOps adaptatif (ANR AdaptiveMLOps, prototype du partenaire industriel)
+
+<p align="center">
+  <a href="https://anr.fr/Projet-ANR-24-IAS2-0004"><img src="docs/assets/logos/anr.png" alt="ANR" height="56"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://dhm.euromov.eu/"><img src="docs/assets/logos/euromov-dhm.png" alt="EuroMov Digital Health in Motion" height="80"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.lirmm.fr/"><img src="docs/assets/logos/lirmm.png" alt="LIRMM" height="56"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.getcaas.io/"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/logos/getcaas-white.png"><img src="docs/assets/logos/getcaas.png" alt="GetCaaS" height="56"></picture></a>
+</p>
 
 [English](README.md) | **Français**
 
@@ -27,9 +34,9 @@ FGCS 185 (2026) 108700).
 
 | | |
 |---|---|
-| Titre | **MLOps Adaptatif** — AdaptiveMLOps |
+| Titre | **MLOps Adaptatif** (AdaptiveMLOps) |
 | Financement | Agence nationale de la recherche (ANR), convention **ANR-24-IAS2-0004** |
-| Appel | AAP 2024 *Thématiques Spécifiques en Intelligence Artificielle* (TSIA) — Machine Learning Operations, Génie logiciel pour l'intelligence artificielle |
+| Appel | AAP 2024 *Thématiques Spécifiques en Intelligence Artificielle* (TSIA) : Machine Learning Operations, Génie logiciel pour l'intelligence artificielle |
 | Aide ANR | 489 646 € |
 | Début / durée | septembre 2024 / 48 mois |
 | Coordinateur | Sylvain Vauttier (EuroMov Digital Health in Motion) |
@@ -55,19 +62,43 @@ preuves de concept sur la plateforme cloud du partenaire industriel.
 
 | Partenaire | Rôle | Site |
 |---|---|---|
-| EuroMov Digital Health in Motion (EuroMov DHM) — Université de Montpellier & IMT Mines Alès | Coordinateur | <https://dhm.euromov.eu/> |
-| LIRMM — Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier (Université de Montpellier, CNRS) | Partenaire académique | <https://www.lirmm.fr/> |
+| EuroMov Digital Health in Motion (EuroMov DHM), Université de Montpellier & IMT Mines Alès | Coordinateur | <https://dhm.euromov.eu/> |
+| LIRMM, Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier (Université de Montpellier, CNRS) | Partenaire académique | <https://www.lirmm.fr/> |
 | GetCaaS | Partenaire industriel (ce dépôt) | <https://www.getcaas.io/> |
+
+<p align="center">
+  <a href="https://www.imt-mines-ales.fr/"><img src="docs/assets/logos/imt-mines-ales.png" alt="IMT Mines Alès" height="48"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.umontpellier.fr/"><img src="docs/assets/logos/universite-montpellier.png" alt="Université de Montpellier" height="44"></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.cnrs.fr/"><img src="docs/assets/logos/cnrs.svg" alt="CNRS" height="48"></a>
+</p>
 
 **Liens officiels.**
 - Fiche du projet sur le site de l'ANR : <https://anr.fr/Projet-ANR-24-IAS2-0004>
 - Site du projet : <https://adaptivemlops.wp.imt.fr/>
-- IMT Mines Alès : <https://www.imt-mines-ales.fr/> — Université de Montpellier : <https://www.umontpellier.fr/> — CNRS : <https://www.cnrs.fr/>
+- IMT Mines Alès : <https://www.imt-mines-ales.fr/>, Université de Montpellier : <https://www.umontpellier.fr/>, CNRS : <https://www.cnrs.fr/>
 
 **Publications du consortium sur lesquelles s'appuie ce travail.**
-- C. El Hatimi et al., *Toward Adaptive MLOps: Variability Mapping and Modeling*, Journées nationales du GdR GPL, Pau, 2025 — <https://hal.science/hal-05127859>
-- C. Daoud et al., *SkeltyMLOps: Orchestrating Collaborative MLOps Activities*, MLOps25 @ ECAI 2025, CEUR-WS vol. 4109 — <https://hal.science/hal-05337700>
-- C. Daoud et al., *A reference architecture for an orchestrated collaborative MLOps*, Future Generation Computer Systems 185 (2026) 108700 — <https://doi.org/10.1016/j.future.2026.108700>
+- C. El Hatimi et al., *Toward Adaptive MLOps: Variability Mapping and Modeling*, Journées nationales du GdR GPL, Pau, 2025. <https://hal.science/hal-05127859>
+- C. Daoud et al., *SkeltyMLOps: Orchestrating Collaborative MLOps Activities*, MLOps25 @ ECAI 2025, CEUR-WS vol. 4109. <https://hal.science/hal-05337700>
+- C. Daoud et al., *A reference architecture for an orchestrated collaborative MLOps*, Future Generation Computer Systems 185 (2026) 108700. <https://doi.org/10.1016/j.future.2026.108700>
+
+## Vue d'ensemble
+
+```mermaid
+flowchart LR
+    M["Modèle DSL<br/>(5 lignes pour un non-expert)"] --> C["Complétion du feature model<br/>et conseils"]
+    C --> D["Dérivation<br/>(ligne de processus)"]
+    D --> P["Placement multi-objectif<br/>coût · carbone · latence ·<br/>souveraineté"]
+    P --> G["Génération<br/>Terraform · Argo · CI"]
+    G --> R[["Déploiement<br/>multi-fournisseurs"]]
+    R -. "dérive, prix, pannes" .-> A["Adaptation MAPE-K<br/>contrats · re-placement"]
+    A -.-> P
+```
+
+Architecture scientifique et logicielle détaillée, avec les schémas du feature
+model, de la ligne de processus, du problème de placement, de la boucle
+d'adaptation et des contrats de coordination :
+[docs/ARCHITECTURE.fr.md](docs/ARCHITECTURE.fr.md).
 
 ## Démarrage rapide
 
@@ -126,7 +157,7 @@ scripts/         hooks git (lancer `sh scripts/install-hooks.sh` après le clone
 
 ## Citation / licence
 Apache-2.0 © 2026 GetCaaS SARL. Voir `CITATION.cff`. L'article associé
-(`paper/main.tex`) est un brouillon soumis à la revue du consortium — ne pas le
+(`paper/main.tex`) est un brouillon soumis à la revue du consortium : ne pas le
 diffuser avant la revue de publication prévue par l'accord de consortium.
 
 ## Remerciements
