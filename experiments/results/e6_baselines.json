@@ -1,0 +1,100 @@
+{
+  "churn": {
+    "exact": {
+      "J": 1.0855072463768116,
+      "seconds": 0.0003991000121459365,
+      "locations": [
+        "ovhcloud/fr-gra"
+      ]
+    },
+    "greedy": {
+      "J": 1.0855072463768116,
+      "seconds": 0.00017199997091665864,
+      "locations": [
+        "ovhcloud/fr-gra"
+      ],
+      "egress": 0.0,
+      "colocation_ok": true
+    },
+    "best_single_location": {
+      "J": 1.0855072463768116,
+      "locations": [
+        "ovhcloud/fr-gra"
+      ]
+    }
+  },
+  "health": {
+    "exact": {
+      "J": 1.0,
+      "seconds": 0.00032140000257641077,
+      "locations": [
+        "outscale/fr-gouv"
+      ]
+    },
+    "greedy": {
+      "J": 1.0,
+      "seconds": 0.00015699997311457992,
+      "locations": [
+        "outscale/fr-gouv"
+      ],
+      "egress": 0.0,
+      "colocation_ok": true
+    },
+    "best_single_location": {
+      "J": 1.0,
+      "locations": [
+        "outscale/fr-gouv"
+      ]
+    }
+  },
+  "maintenance": {
+    "exact": {
+      "J": 1.026874288729946,
+      "seconds": 0.5321625999640673,
+      "locations": [
+        "ovhcloud/fr-gra",
+        "scaleway/fr-par"
+      ]
+    },
+    "greedy": {
+      "J": 1.0256758511739896,
+      "seconds": 0.00020970002515241504,
+      "locations": [
+        "ovhcloud/fr-gra",
+        "scaleway/fr-par"
+      ],
+      "egress": 0.0,
+      "colocation_ok": false
+    },
+    "best_single_location": {
+      "J": 1.027453198427495,
+      "locations": [
+        "scaleway/fr-par"
+      ]
+    }
+  },
+  "retail": {
+    "exact": {
+      "J": 1.0942028985507246,
+      "seconds": 0.00038790004327893257,
+      "locations": [
+        "scaleway/fr-par"
+      ]
+    },
+    "greedy": {
+      "J": 1.0942028985507246,
+      "seconds": 0.00016920000780373812,
+      "locations": [
+        "scaleway/fr-par"
+      ],
+      "egress": 0.0,
+      "colocation_ok": true
+    },
+    "best_single_location": {
+      "J": 1.0942028985507246,
+      "locations": [
+        "scaleway/fr-par"
+      ]
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "churn": {
+    "0.1": {
+      "p_same_locations": 0.59,
+      "regret_mean": 0.02711821151720634,
+      "regret_p95": 0.12627802057799853,
+      "regret_max": 0.27880882430160425,
+      "p_single_provider": 0.98,
+      "carbon_saving_median": 0.8626577751603068,
+      "carbon_saving_p5": 0.0
+    },
+    "0.25": {
+      "p_same_locations": 0.44,
+      "regret_mean": 0.1237861286689621,
+      "regret_p95": 0.4635909271244443,
+      "regret_max": 1.0378730527394344,
+      "p_single_provider": 0.96,
+      "carbon_saving_median": 0.8516894957636189,
+      "carbon_saving_p5": 0.0
+    },
+    "0.5": {
+      "p_same_locations": 0.29,
+      "regret_mean": 0.47922067574144267,
+      "regret_p95": 1.8576731334366112,
+      "regret_max": 2.8045547799358257,
+      "p_single_provider": 0.91,
+      "carbon_saving_median": 0.8164245991078213,
+      "carbon_saving_p5": 0.0
+    }
+  },
+  "health": {
+    "0.1": {
+      "p_same_locations": 1.0,
+      "regret_mean": 2.1057807805258122e-07,
+      "regret_p95": 0.0,
+      "regret_max": 2.1057807805258122e-05,
+      "p_single_provider": 1.0
+    },
+    "0.25": {
+      "p_same_locations": 1.0,
+      "regret_mean": 7.482437020885247e-05,
+      "regret_p95": 0.0005526476508601608,
+      "regret_max": 0.0014162433579636424,
+      "p_single_provider": 1.0
+    },
+    "0.5": {
+      "p_same_locations": 1.0,
+      "regret_mean": 0.00044086925303761905,
+      "regret_p95": 0.002293168091176856,
+      "regret_max": 0.01205905916137695,
+      "p_single_provider": 1.0
+    }
+  },
+  "maintenance": {
+    "0.1": {
+      "p_same_locations": 0.54,
+      "regret_mean": 0.004029561826997968,
+      "regret_p95": 0.010842596562722795,
+      "regret_max": 0.11512772919063785,
+      "p_single_provider": 0.46
+    },
+    "0.25": {
+      "p_same_locations": 0.23,
+      "regret_mean": 0.05698153175542176,
+      "regret_p95": 0.2550556826977679,
+      "regret_max": 0.6051192362392017,
+      "p_single_provider": 0.75
+    },
+    "0.5": {
+      "p_same_locations": 0.11,
+      "regret_mean": 0.2987943195582263,
+      "regret_p95": 1.1432106424039579,
+      "regret_max": 2.350400066062317,
+      "p_single_provider": 0.81
+    }
+  },
+  "retail": {
+    "0.1": {
+      "p_same_locations": 0.46,
+      "regret_mean": 0.05093306042333947,
+      "regret_p95": 0.18399511070951058,
+      "regret_max": 0.2986833391670798,
+      "p_single_provider": 0.94,
+      "carbon_saving_median": 0.8883951837993629,
+      "carbon_saving_p5": 0.007540115565641825
+    },
+    "0.25": {
+      "p_same_locations": 0.31,
+      "regret_mean": 0.19701920283468477,
+      "regret_p95": 0.6721022310886788,
+      "regret_max": 1.1564994842522123,
+      "p_single_provider": 0.95,
+      "carbon_saving_median": 0.8527166663045035,
+      "carbon_saving_p5": 0.0
+    },
+    "0.5": {
+      "p_same_locations": 0.32,
+      "regret_mean": 0.5263148926666198,
+      "regret_p95": 1.970406383039168,
+      "regret_max": 4.322157433879932,
+      "p_single_provider": 0.88,
+      "carbon_saving_median": 0.8183936538825347,
+      "carbon_saving_p5": 0.0
+    }
+  },
+  "draws": 100
+}

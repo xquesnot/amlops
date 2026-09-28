@@ -108,8 +108,11 @@ amlops validate examples/churn_novice.amlops.yaml        # best-practice finding
 amlops place    examples/churn_novice.amlops.yaml --pareto
 amlops generate examples/churn_novice.amlops.yaml -o out/churn
 amlops simulate examples/predictive_maintenance_expert.amlops.yaml
-pytest -q                                                # 35 tests
-python experiments/run_all.py                            # regenerates all paper numbers
+amlops analyse                                           # #configurations, core/dead/false-optional features
+amlops export-uvl -o model.uvl                           # feature model in UVL (FeatureIDE, flamapy)
+amlops schema -o amlops.schema.json                      # JSON Schema of the DSL (editor completion)
+pytest -q                                                # 70 tests
+python experiments/run_all.py                            # regenerates all paper numbers (E1 to E7)
 ```
 
 A non-expert model is five lines:
@@ -143,13 +146,14 @@ Experts refine features, steps, triggers, placement and parameters (see
 ```
 src/amlops/
   knowledge/     feature model, rules, profiles, 38 SkeltyMLOps activities, provider catalogue
-  variability/   feature-model semantics, configuration completion, advisor
+  variability/   feature-model semantics, completion, advisor, exact #SAT analysis, UVL export
   dsl/           metamodel, YAML parser, registry, derivation (process-line base model)
   placement/     exact multi-objective placement, Pareto front, dynamic policies simulator
   generators/    Terraform, Kubernetes/Argo, GitHub Actions, traceability
   adaptation/    PSI/KS drift detection, executable coordination contracts, MAPE-K loop
 examples/        four illustrative case studies (+ generated output of one)
-experiments/     run_all.py and results/*.json
+experiments/     run_all.py (E1 to E7), export_results_tex.py and results/*.json
+schema/          JSON Schema of the DSL and UVL export of the feature model
 paper/           LaTeX sources (main.tex, EN; main_fr.tex, FR); generated/; figures/
 scripts/         git hooks (run `sh scripts/install-hooks.sh` after cloning)
 ```

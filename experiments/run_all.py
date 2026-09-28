@@ -211,6 +211,13 @@ def e3_placement() -> dict:
                      "optimal": p.optimal})
     out["scalability"] = scal
     macro("ScalMaxSteps", scal[-1]["steps"])
+    macro("ScalMinSteps", scal[0]["steps"])
+    macro("ScalNodesMin", scal[0]["nodes"])
+    macro("ScalNodesMax", scal[-1]["nodes"])
+    worst = max((max(v["J"] for v in c["single_provider"].values() if v) / c["optimised"]["J"] - 1)
+                for c in (out[k] for k in CASES))
+    macro("WorstSinglePct", f"{100 * worst:.0f}")
+    macro("MaintenanceNodes", f"{out['maintenance']['optimised']['nodes']:,}".replace(",", "\\,"))
     macro("ScalMaxSeconds", f"{max(s['seconds'] for s in scal):.2f}")
 
     # Pareto fronts
@@ -221,6 +228,10 @@ def e3_placement() -> dict:
                        for p in pareto_front(rp, offers, n=21)]
     out["pareto"] = fronts
     dump("e3_placement", out)
+    for key, front in fronts.items():  # pgfplots data for the paper
+        (GEN / f"fig_pareto_{key}.dat").write_text("cost carbon label\n" + "".join(
+            f"{p['cost']:.2f} {p['carbon']:.3f} {'+'.join(loc.split('/')[1] for loc in p['locations'])}\n"
+            for p in front))
     try:
         import matplotlib
         matplotlib.use("Agg")
@@ -303,6 +314,8 @@ def e4_dynamic() -> dict:
         macro(f"J{name}Oracle", f"{o['J']['mean']:.3f}")
         macro(f"J{name}Reactive", f"{r['J']['mean']:.3f}")
         macro(f"JobCarbon{name}Pct", f"{100 * (1 - h['job_carbon']['mean'] / s['job_carbon']['mean']):.0f}")
+        macro(f"JobCarbon{name}OraclePct", f"{100 * (1 - o['job_carbon']['mean'] / s['job_carbon']['mean']):.0f}")
+        macro(f"OracleGain{name}Pct", f"{100 * (1 - o['J']['mean']):.1f}")
     (GEN / "tab_dynamic.tex").write_text("\n".join(rows[:-1]) + "\n")
 
     # ablation on scenario B: margin and look-ahead
@@ -317,6 +330,22 @@ def e4_dynamic() -> dict:
     (GEN / "tab_ablation.tex").write_text("\n".join(
         f"{a['margin']} & {a['lookahead']} & {a['J']:.3f} & {a['migrations']:.1f} \\\\" for a in abl) + "\n")
     dump("e4_dynamic", out)
+
+    # pgfplots data: first week of scenario B, seed 0 (grid intensity of the admissible
+    # serving locations and intensity experienced by the placed service)
+    wl = build_workload(rp, exclude_locations=scenarios["B"])
+    env = synthetic_environment(hours=720, seed=0)
+    sim = Simulator(wl, env, w, seed=0)
+    T = 24 * 7
+    feas = [i for i, f in enumerate(wl.feasible) if f]
+    trajs = {p: sim.run(p).trajectory[:T] for p in ("reactive", "hysteresis")}
+    head = "hour " + " ".join(f"loc{j}" for j in range(len(feas))) + " reactive hysteresis\n"
+    body = "".join(
+        f"{t} " + " ".join(f"{env.grid[i, t]:.1f}" for i in feas)
+        + f" {env.grid[trajs['reactive'][t], t]:.1f} {env.grid[trajs['hysteresis'][t], t]:.1f}\n"
+        for t in range(T))
+    (GEN / "fig_trace_B.dat").write_text(head + body)
+    (GEN / "fig_trace_B_locations.txt").write_text("\n".join(wl.locations[i] for i in feas) + "\n")
 
     try:
         import matplotlib
@@ -346,6 +375,180 @@ def e4_dynamic() -> dict:
     return out
 
 
+# --------------------------------------------------------------------------- E5
+def e5_analysis() -> dict:
+    """Automated analysis of the feature model (exact #SAT) and completion cost."""
+    from amlops.variability import analyse, to_cnf
+    fm = knowledge.feature_model()
+    a = analyse(fm)
+    cnf = to_cnf(fm)
+    leaves = fm.leaves()
+    comm = sorted(a.commonality[f] for f in leaves)
+    completion = {}
+    for name, prof in knowledge.profiles().items():
+        t0 = time.perf_counter()
+        cfg = fm.complete(select=prof.get("select", []), deselect=prof.get("deselect", []))
+        completion[name] = {"selected": len(cfg), "seconds": time.perf_counter() - t0}
+    out = {"analysis": a.as_dict(), "n_vars": cnf.n_vars, "completion": completion,
+           "leaf_commonality_min": comm[0], "leaf_commonality_max": comm[-1]}
+    dump("e5_analysis", out)
+    n = a.n_configurations
+    exp = len(str(n)) - 1
+    macro("FMConfigs", f"{n / 10 ** exp:.2f}\\times10^{{{exp}}}")
+    macro("FMConfigsExact", f"{n:,}".replace(",", "\\,"))
+    macro("FMCore", len(a.core))
+    macro("FMDead", len(a.dead))
+    macro("FMFalseOptional", len(a.false_optional))
+    macro("FMClauses", a.n_clauses)
+    macro("FMAux", a.n_aux_vars)
+    macro("FMVars", cnf.n_vars)
+    macro("FMSeconds", f"{a.seconds:.2f}")
+    macro("FMLeafCommMin", f"{100 * comm[0]:.1f}")
+    macro("FMLeafCommMax", f"{100 * comm[-1]:.1f}")
+    macro("FMCompletionMaxMs", f"{1000 * max(c['seconds'] for c in completion.values()):.0f}")
+    return out
+
+
+# --------------------------------------------------------------------------- E6
+def _greedy(rp, offers, refs, w):
+    from amlops.placement.optimizer import evaluate_step, feasible
+    assign = {}
+    for s in rp.steps:
+        cands = [o for o in offers if feasible(s, o, rp)]
+
+        def score(o, s=s):
+            e = evaluate_step(s, o)
+            return w[0] * e.cost / refs["cost"] + w[1] * e.carbon_kg / refs["carbon"] + w[2] * e.latency / refs["latency"]
+        assign[s.id] = min(cands, key=score)
+    return assign
+
+
+def _colocation_ok(rp, assign) -> bool:
+    return all(len({assign[m].location for m in grp if m in assign}) <= 1 for grp in rp.placement.colocate)
+
+
+def e6_baselines() -> dict:
+    """Exact branch and bound versus a per-step greedy heuristic and the best single location."""
+    offers = load_offers()
+    out, rows = {}, []
+    for key, fname in CASES.items():
+        rp = derive(parse_file(ROOT / "examples" / fname))
+        w = (rp.objectives.cost, rp.objectives.carbon, rp.objectives.latency)
+        t0 = time.perf_counter()
+        opt = optimise(rp, offers)
+        t_exact = time.perf_counter() - t0
+        t0 = time.perf_counter()
+        g = _greedy(rp, offers, opt.refs, w)
+        t_greedy = time.perf_counter() - t0
+        pg = evaluate_assignment(rp, g, opt.refs, w)
+        single = []
+        for loc in sorted({o.location for o in offers}):
+            r2 = copy.deepcopy(rp)
+            sub = [o for o in offers if o.location == loc]
+            try:
+                single.append(optimise(r2, sub, refs=opt.refs))
+            except Exception:
+                pass
+        bs = min(single, key=lambda p: p.objective)
+        out[key] = {"exact": {"J": opt.objective, "seconds": t_exact, "locations": sorted(opt.locations())},
+                    "greedy": {"J": pg.objective, "seconds": t_greedy, "locations": sorted(pg.locations()),
+                               "egress": pg.egress_cost, "colocation_ok": _colocation_ok(rp, g)},
+                    "best_single_location": {"J": bs.objective, "locations": sorted(bs.locations())}}
+        gap_g = 100 * (pg.objective / opt.objective - 1)
+        gap_s = 100 * (bs.objective / opt.objective - 1)
+        rows.append(f"{key} & {opt.objective:.3f} & {pg.objective:.3f} & {gap_g:.1f} & "
+                    f"{'yes' if _colocation_ok(rp, g) else 'no'} & {len(pg.locations())} & "
+                    f"{bs.objective:.3f} & {gap_s:.1f} \\\\")
+    (GEN / "tab_baselines.tex").write_text("\n".join(rows) + "\n")
+    gaps = [100 * (v["greedy"]["J"] / v["exact"]["J"] - 1) for v in out.values()]
+    macro("GreedyGapMax", f"{max(gaps):.1f}")
+    macro("GreedyGapMin", f"{min(gaps):.1f}")
+    macro("GreedyColocViol", sum(not v["greedy"]["colocation_ok"] for v in out.values()))
+    dump("e6_baselines", out)
+    return out
+
+
+# --------------------------------------------------------------------------- E7
+def _perturbed_catalog(rng, sigma: float) -> dict:
+    import math
+    cat = copy.deepcopy(knowledge.provider_catalog())
+
+    def ln():
+        return math.exp(rng.gauss(-sigma * sigma / 2, sigma))  # mean-preserving log-normal factor
+    for t in cat["instance_types"].values():
+        t["power_w"] *= ln()
+    for p in cat["providers"].values():
+        for r in p["regions"].values():
+            r["price_factor"] = r.get("price_factor", 1.0) * ln()
+            r["grid"] *= ln()
+    return cat
+
+
+def e7_robustness(draws: int = 100) -> dict:
+    """Do the static-placement conclusions survive catalogue uncertainty?
+
+    Prices (per region), power draws (per instance type) and grid intensities
+    (per region) are multiplied by independent mean-preserving log-normal
+    factors of dispersion sigma. For each draw we re-optimise and record
+    (i) whether the optimal set of locations is unchanged, (ii) the regret of
+    keeping the nominal placement, (iii) whether the optimum still uses a
+    single provider, and (iv) the carbon saving of the carbon-aware weights
+    over the cost-only placement.
+    """
+    import random
+    nominal = load_offers()
+    out, rows = {}, []
+    for key, fname in CASES.items():
+        rp = derive(parse_file(ROOT / "examples" / fname))
+        w = (rp.objectives.cost, rp.objectives.carbon, rp.objectives.latency)
+        nom = optimise(rp, nominal)
+        nom_keys = {sid: o.key for sid, o in nom.assignment.items()}
+        out[key] = {}
+        for sigma in (0.1, 0.25, 0.5):
+            rng = random.Random(f"{key}-{sigma}")
+            same, regrets, single, savings = 0, [], 0, []
+            for _ in range(draws):
+                offers = load_offers(_perturbed_catalog(rng, sigma))
+                by_key = {o.key: o for o in offers}
+                opt = optimise(rp, offers)
+                keep = evaluate_assignment(rp, {sid: by_key[k] for sid, k in nom_keys.items()}, opt.refs, w)
+                same += opt.locations() == nom.locations()
+                regrets.append(keep.objective / opt.objective - 1)
+                single += len({o.provider for o in opt.assignment.values()}) == 1
+                if w[1] > 0 and key in ("churn", "retail"):
+                    co = optimise(rp, offers, weights=(1, 0, 0), refs=opt.refs)
+                    if co.carbon_kg > 0:
+                        savings.append(1 - opt.carbon_kg / co.carbon_kg)
+            regrets.sort()
+            res = {"p_same_locations": same / draws, "regret_mean": sum(regrets) / draws,
+                   "regret_p95": regrets[int(0.95 * (draws - 1))], "regret_max": regrets[-1],
+                   "p_single_provider": single / draws}
+            if savings:
+                savings.sort()
+                res.update({"carbon_saving_median": savings[len(savings) // 2],
+                            "carbon_saving_p5": savings[int(0.05 * (len(savings) - 1))]})
+            out[key][str(sigma)] = res
+            sav = (f"{100 * res['carbon_saving_median']:.0f} ({100 * res['carbon_saving_p5']:.0f})"
+                   if savings else "n/a")
+            rows.append(f"{key} & {sigma} & {100 * res['p_same_locations']:.0f} & "
+                        f"{100 * res['regret_mean']:.1f} & {100 * res['regret_p95']:.1f} & "
+                        f"{100 * res['p_single_provider']:.0f} & {sav} \\\\")
+        rows.append("\\midrule")
+    (GEN / "tab_robustness.tex").write_text("\n".join(rows[:-1]) + "\n")
+    out["draws"] = draws
+    dump("e7_robustness", out)
+    r = {k: v for k, v in out.items() if k != "draws"}
+    macro("RobDraws", draws)
+    macro("RobSingleMinHalf", f"{100 * min(v['0.5']['p_single_provider'] for v in r.values()):.0f}")
+    macro("RobSameMinQuarter", f"{100 * min(v['0.25']['p_same_locations'] for v in r.values()):.0f}")
+    macro("RobSameMaxQuarter", f"{100 * max(v['0.25']['p_same_locations'] for v in r.values()):.0f}")
+    macro("RobRegretMaxMeanQuarter", f"{100 * max(v['0.25']['regret_mean'] for v in r.values()):.1f}")
+    macro("RobRegretMaxPNinetyFiveHalf", f"{100 * max(v['0.5']['regret_p95'] for v in r.values()):.1f}")
+    macro("RobSavingChurnHalf", f"{100 * r['churn']['0.5']['carbon_saving_median']:.0f}")
+    macro("RobSavingRetailHalf", f"{100 * r['retail']['0.5']['carbon_saving_median']:.0f}")
+    return out
+
+
 def main() -> None:
     t0 = time.time()
     fm = knowledge.feature_model()
@@ -364,6 +567,12 @@ def main() -> None:
     e3_placement()
     print("E4 dynamic ...")
     e4_dynamic()
+    print("E5 feature-model analysis ...")
+    e5_analysis()
+    print("E6 placement baselines ...")
+    e6_baselines()
+    print("E7 robustness to catalogue uncertainty ...")
+    e7_robustness()
     (GEN / "macros.tex").write_text("\n".join(f"\\newcommand{{\\{k}}}{{{v}}}" for k, v in sorted(MACROS.items())) + "\n")
     print(f"done in {time.time() - t0:.0f}s; macros: {len(MACROS)}")
 

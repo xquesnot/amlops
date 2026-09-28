@@ -8,7 +8,7 @@
         "ovhcloud/fr-gra"
       ],
       "nodes": 91,
-      "seconds": 0.0005985529999747996,
+      "seconds": 0.0005221999599598348,
       "optimal": true
     },
     "cost_only": {
@@ -49,7 +49,7 @@
         "outscale/fr-gouv"
       ],
       "nodes": 12,
-      "seconds": 0.0002289799999743991,
+      "seconds": 0.000146100006531924,
       "optimal": true
     },
     "cost_only": {
@@ -79,7 +79,7 @@
         "scaleway/fr-par"
       ],
       "nodes": 343403,
-      "seconds": 0.6447048840000207,
+      "seconds": 0.594891800021287,
       "optimal": true
     },
     "cost_only": {
@@ -116,7 +116,7 @@
         "scaleway/fr-par"
       ],
       "nodes": 91,
-      "seconds": 0.0007435580000105801,
+      "seconds": 0.00042940001003444195,
       "optimal": true
     },
     "cost_only": {
@@ -152,7 +152,7 @@
     {
       "steps": 10,
       "nodes": 91,
-      "seconds": 0.001,
+      "seconds": 0.0,
       "optimal": true
     },
     {
@@ -176,7 +176,7 @@
     {
       "steps": 30,
       "nodes": 271,
-      "seconds": 0.002,
+      "seconds": 0.001,
       "optimal": true
     }
   ],

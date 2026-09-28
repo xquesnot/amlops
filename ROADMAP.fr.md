@@ -38,8 +38,8 @@ consortium : tout n'a pas vocation à être réalisé, et les priorités vont de
 
 | Id | Élément |
 |---|---|
-| B1 | Export et import du feature model aux formats UVL (Universal Variability Language) et FeatureIDE |
-| B2 | Analyse par solveur SAT : features mortes, fausses optionnelles, comptage des configurations valides, explication minimale des conflits |
+| B1 (export fait, import à faire) | Export et import du feature model aux formats UVL (Universal Variability Language) et FeatureIDE |
+| B2 (comptage, socles, mortes, fausses optionnelles faits ; explication des conflits à faire) | Analyse par solveur SAT : features mortes, fausses optionnelles, comptage des configurations valides, explication minimale des conflits |
 | B3 | Export du pipeline résolu et de ses contrats vers le format de processus retenu par les partenaires (BPMN 2.0 ou autre), et import de leurs variantes de processus |
 | B4 | Adaptateur vers l'orchestrateur de processus MLOps de SkeltyMLOps : tickets et contrats d'`amlops` exécutés comme instances de l'orchestrateur |
 | B5 | Export du métamodèle (schéma JSON, puis Ecore si le consortium le retient) |
@@ -78,7 +78,7 @@ activités SkeltyMLOps réalisées par les artefacts générés (21 sur 38 en v0
 
 | Id | Élément |
 |---|---|
-| F1 | Schéma JSON du DSL pour la complétion et la validation dans les éditeurs, puis serveur de langage |
+| F1 (schéma fait en 0.2.0-dev) | Schéma JSON du DSL pour la complétion et la validation dans les éditeurs, puis serveur de langage |
 | F2 | Éditeur graphique ou bac à sable web pour les non-experts |
 | F3 | Étude utilisateur avec non-experts et experts (tâches chronométrées, taux de réussite, SUS), DSL contre écriture manuelle des artefacts |
 

@@ -1,0 +1,107 @@
+namespace AdaptiveMLOps
+
+features
+    MLOpsPipeline {abstract}
+        mandatory
+            Functional {abstract}
+                mandatory
+                    MLTask {abstract}
+                        alternative
+                            ClassificationBaseline
+                            TabularClassification
+                            Regression
+                            TimeSeriesForecasting
+                            AnomalyDetection
+                    Preprocessing {abstract}
+                        or
+                            Imputation
+                            OutlierRemoval
+                            Normalization
+                            FeatureSelection
+                            DimReduction
+                optional
+                    HyperparameterTuning
+                    Explainability
+            Behavioral {abstract}
+                mandatory
+                    TrainingTrigger {abstract}
+                        or
+                            Manual
+                            Scheduled
+                            DriftTriggered
+                            PerformanceTriggered
+                            NewDataTriggered
+                    DeploymentStrategy {abstract}
+                        alternative
+                            Recreate
+                            BlueGreen
+                            Canary
+                            Shadow
+                optional
+                    HumanGate
+            Technical {abstract}
+                mandatory
+                    Orchestrator {abstract}
+                        alternative
+                            ArgoWorkflows
+                            Kubeflow
+                            Airflow
+                    Serving {abstract}
+                        alternative
+                            OnlineService
+                            KServe
+                            BatchScoring
+                    Runtime {abstract}
+                        alternative
+                            Kubernetes
+                            Serverless
+                optional
+                    ExperimentTracking
+                    DataVersioning
+                    GPU
+            DomainSpecific {abstract}
+                mandatory
+                    Domain {abstract}
+                        alternative
+                            GenericDomain
+                            Industry40IoT
+                            Healthcare
+                            Retail
+                            Finance
+            NonFunctional {abstract}
+                mandatory
+                    Objectives {abstract}
+                        or
+                            CostOptimized
+                            CarbonAware
+                            LatencyCritical
+                    Monitoring {abstract}
+                        or
+                            DataDriftMonitoring
+                            ConceptDriftMonitoring
+                            InfraMonitoring
+            Organizational {abstract}
+                mandatory
+                    Sovereignty {abstract}
+                        alternative
+                            NoResidencyConstraint
+                            EUResidency
+                            SecNumCloud
+                optional
+                    Compliance {abstract}
+                        or
+                            GDPR
+                            AIActHighRisk
+                            HDS
+
+constraints
+    !(ClassificationBaseline & DimReduction)
+    DriftTriggered => (DataDriftMonitoring | ConceptDriftMonitoring)
+    PerformanceTriggered => ConceptDriftMonitoring
+    (KServe | Kubeflow | ArgoWorkflows) => Kubernetes
+    (Canary | Shadow) => !BatchScoring
+    Healthcare => (HDS & !NoResidencyConstraint)
+    (HDS | SecNumCloud) => !NoResidencyConstraint
+    AIActHighRisk => (HumanGate & Explainability)
+    LatencyCritical => !BatchScoring
+    (Healthcare | Finance) => Compliance

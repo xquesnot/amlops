@@ -36,8 +36,8 @@ industrial validation promised by the project) to **P3** (desirable if time allo
 
 | Id | Item |
 |---|---|
-| B1 | Feature model export and import in UVL (Universal Variability Language) and FeatureIDE formats |
-| B2 | SAT-based analysis: dead features, false optionals, counting valid configurations, minimal conflict explanations |
+| B1 (export done, import to do) | Feature model export and import in UVL (Universal Variability Language) and FeatureIDE formats |
+| B2 (counting, core, dead, false-optional done; conflict explanations to do) | SAT-based analysis: dead features, false optionals, counting valid configurations, minimal conflict explanations |
 | B3 | Export of the resolved pipeline and its contracts to the process format chosen by the partners (BPMN 2.0 or other), and import of their process variants |
 | B4 | Adapter to the SkeltyMLOps MLOps process orchestrator: `amlops` tickets and contracts executed as orchestrator instances |
 | B5 | Metamodel export (JSON Schema, then Ecore if the consortium adopts it) |
@@ -76,7 +76,7 @@ SkeltyMLOps activities realised by generated artefacts (21 of 38 in v0.1).
 
 | Id | Item |
 |---|---|
-| F1 | JSON Schema of the DSL for editor completion and validation, then a language server |
+| F1 (schema done in 0.2.0-dev) | JSON Schema of the DSL for editor completion and validation, then a language server |
 | F2 | Graphical editor or web playground for non-experts |
 | F3 | User study with non-experts and experts (timed tasks, success rate, SUS), DSL versus hand-written artefacts |
 

@@ -113,8 +113,11 @@ amlops validate examples/churn_novice.amlops.yaml        # constats de bonnes pr
 amlops place    examples/churn_novice.amlops.yaml --pareto
 amlops generate examples/churn_novice.amlops.yaml -o out/churn
 amlops simulate examples/predictive_maintenance_expert.amlops.yaml
-pytest -q                                                # 35 tests
-python experiments/run_all.py                            # régénère tous les chiffres de l'article
+amlops analyse                                           # nombre de configurations, features socles, mortes, fausses optionnelles
+amlops export-uvl -o model.uvl                           # feature model au format UVL (FeatureIDE, flamapy)
+amlops schema -o amlops.schema.json                      # schéma JSON du DSL (complétion dans les éditeurs)
+pytest -q                                                # 70 tests
+python experiments/run_all.py                            # régénère tous les chiffres de l'article (E1 à E7)
 ```
 
 Un modèle non expert tient en cinq lignes :
@@ -148,13 +151,14 @@ Les experts affinent les features, étapes, déclencheurs, placements et paramè
 ```
 src/amlops/
   knowledge/     feature model, règles, profils, 38 activités SkeltyMLOps, catalogue fournisseurs
-  variability/   sémantique du feature model, complétion de configuration, conseiller
+  variability/   sémantique du feature model, complétion, conseiller, analyse #SAT exacte, export UVL
   dsl/           métamodèle, parseur YAML, registre, dérivation (modèle de base de la ligne de processus)
   placement/     placement multi-objectif exact, front de Pareto, simulateur de politiques dynamiques
   generators/    Terraform, Kubernetes/Argo, GitHub Actions, traçabilité
   adaptation/    détection de dérive PSI/KS, contrats de coordination exécutables, boucle MAPE-K
 examples/        quatre cas d'étude illustratifs (+ sortie générée de l'un d'eux)
-experiments/     run_all.py et results/*.json
+experiments/     run_all.py (E1 à E7), export_results_tex.py et results/*.json
+schema/          schéma JSON du DSL et export UVL du feature model
 paper/           sources LaTeX (main.tex, EN ; main_fr.tex, FR) ; generated/ ; figures/
 scripts/         hooks git (lancer `sh scripts/install-hooks.sh` après le clone)
 ```

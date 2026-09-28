@@ -1,0 +1,2 @@
+ovhcloud/de-lim
+scaleway/nl-ams

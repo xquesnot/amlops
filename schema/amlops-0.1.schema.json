@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/xquesnot/amlops/schema/amlops-0.1.json",
+  "title": "amlops DSL model",
+  "type": "object",
+  "required": [
+    "pipeline"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "amlops": {
+      "enum": [
+        "0.1"
+      ]
+    },
+    "pipeline": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "description": {
+      "type": "string"
+    },
+    "profile": {
+      "enum": [
+        "anomaly-detection-edge-iot",
+        "regulated-health-classifier",
+        "tabular-classification-continuous",
+        "timeseries-forecast-batch"
+      ]
+    },
+    "best_practices": {
+      "type": "boolean"
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "select": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "AIActHighRisk",
+              "Airflow",
+              "AnomalyDetection",
+              "ArgoWorkflows",
+              "BatchScoring",
+              "Behavioral",
+              "BlueGreen",
+              "Canary",
+              "CarbonAware",
+              "ClassificationBaseline",
+              "Compliance",
+              "ConceptDriftMonitoring",
+              "CostOptimized",
+              "DataDriftMonitoring",
+              "DataVersioning",
+              "DeploymentStrategy",
+              "DimReduction",
+              "Domain",
+              "DomainSpecific",
+              "DriftTriggered",
+              "EUResidency",
+              "ExperimentTracking",
+              "Explainability",
+              "FeatureSelection",
+              "Finance",
+              "Functional",
+              "GDPR",
+              "GPU",
+              "GenericDomain",
+              "HDS",
+              "Healthcare",
+              "HumanGate",
+              "HyperparameterTuning",
+              "Imputation",
+              "Industry40IoT",
+              "InfraMonitoring",
+              "KServe",
+              "Kubeflow",
+              "Kubernetes",
+              "LatencyCritical",
+              "MLOpsPipeline",
+              "MLTask",
+              "Manual",
+              "Monitoring",
+              "NewDataTriggered",
+              "NoResidencyConstraint",
+              "NonFunctional",
+              "Normalization",
+              "Objectives",
+              "OnlineService",
+              "Orchestrator",
+              "Organizational",
+              "OutlierRemoval",
+              "PerformanceTriggered",
+              "Preprocessing",
+              "Recreate",
+              "Regression",
+              "Retail",
+              "Runtime",
+              "Scheduled",
+              "SecNumCloud",
+              "Serverless",
+              "Serving",
+              "Shadow",
+              "Sovereignty",
+              "TabularClassification",
+              "Technical",
+              "TimeSeriesForecasting",
+              "TrainingTrigger"
+            ]
+          }
+        },
+        "deselect": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "AIActHighRisk",
+              "Airflow",
+              "AnomalyDetection",
+              "ArgoWorkflows",
+              "BatchScoring",
+              "Behavioral",
+              "BlueGreen",
+              "Canary",
+              "CarbonAware",
+              "ClassificationBaseline",
+              "Compliance",
+              "ConceptDriftMonitoring",
+              "CostOptimized",
+              "DataDriftMonitoring",
+              "DataVersioning",
+              "DeploymentStrategy",
+              "DimReduction",
+              "Domain",
+              "DomainSpecific",
+              "DriftTriggered",
+              "EUResidency",
+              "ExperimentTracking",
+              "Explainability",
+              "FeatureSelection",
+              "Finance",
+              "Functional",
+              "GDPR",
+              "GPU",
+              "GenericDomain",
+              "HDS",
+              "Healthcare",
+              "HumanGate",
+              "HyperparameterTuning",
+              "Imputation",
+              "Industry40IoT",
+              "InfraMonitoring",
+              "KServe",
+              "Kubeflow",
+              "Kubernetes",
+              "LatencyCritical",
+              "MLOpsPipeline",
+              "MLTask",
+              "Manual",
+              "Monitoring",
+              "NewDataTriggered",
+              "NoResidencyConstraint",
+              "NonFunctional",
+              "Normalization",
+              "Objectives",
+              "OnlineService",
+              "Orchestrator",
+              "Organizational",
+              "OutlierRemoval",
+              "PerformanceTriggered",
+              "Preprocessing",
+              "Recreate",
+              "Regression",
+              "Retail",
+              "Runtime",
+              "Scheduled",
+              "SecNumCloud",
+              "Serverless",
+              "Serving",
+              "Shadow",
+              "Sovereignty",
+              "TabularClassification",
+              "Technical",
+              "TimeSeriesForecasting",
+              "TrainingTrigger"
+            ]
+          }
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "volume_gb": {
+          "type": "number",
+          "minimum": 0
+        },
+        "model_gb": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "objectives": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbon": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latency": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowed_providers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "hyperscaler",
+              "outscale",
+              "ovhcloud",
+              "scaleway"
+            ]
+          }
+        },
+        "required_labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pin": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "max_latency_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "colocate": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "approve",
+              "batch_score",
+              "deploy",
+              "deploy_test",
+              "evaluate",
+              "explain",
+              "impute",
+              "ingest",
+              "monitor",
+              "normalize",
+              "reduce_dims",
+              "register",
+              "remove_outliers",
+              "select_features",
+              "serve",
+              "train",
+              "transform",
+              "tune",
+              "validate"
+            ]
+          },
+          "activity": {
+            "enum": [
+              "D1",
+              "D2",
+              "D3",
+              "D4",
+              "D5",
+              "D6",
+              "D7",
+              "D8",
+              "M1",
+              "M2",
+              "M3",
+              "M4",
+              "M5",
+              "M6",
+              "M7",
+              "M8",
+              "M9",
+              "O1",
+              "O2",
+              "O3",
+              "O4",
+              "O5",
+              "O6",
+              "O7",
+              "O8",
+              "O9",
+              "P1",
+              "P2",
+              "P3",
+              "P4",
+              "P5",
+              "P6",
+              "P7",
+              "S1",
+              "S2",
+              "S3",
+              "S4",
+              "S5"
+            ],
+            "description": "SkeltyMLOps activity id"
+          },
+          "image": {
+            "type": "string"
+          },
+          "resources": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "vcpu": {
+                "type": "number",
+                "minimum": 0
+              },
+              "mem_gb": {
+                "type": "number",
+                "minimum": 0
+              },
+              "gpu": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "after": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          },
+          "hours": {
+            "type": "number",
+            "minimum": 0
+          },
+          "runs_per_month": {
+            "type": "number",
+            "minimum": 0
+          },
+          "replicas": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "output_gb": {
+            "type": "number",
+            "minimum": 0
+          },
+          "deferrable_hours": {
+            "type": "number",
+            "minimum": 0
+          },
+          "continuous": {
+            "type": "boolean"
+          },
+          "remove": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "schedule",
+              "drift",
+              "performance",
+              "new_data",
+              "manual"
+            ]
+          },
+          "cron": {
+            "type": "string"
+          },
+          "detector": {
+            "enum": [
+              "psi",
+              "ks"
+            ]
+          },
+          "threshold": {
+            "type": "number"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "contract": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "overrides": {
+      "type": "object"
+    }
+  }
+}

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from pathlib import Path
 
 from amlops import __version__, knowledge
 from amlops.dsl import DerivationError, DSLError, derive, parse_file
@@ -76,6 +77,35 @@ def cmd_knowledge(a: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyse(a: argparse.Namespace) -> int:
+    from amlops.variability import analyse
+    d = analyse(knowledge.feature_model()).as_dict()
+    if not a.commonality:
+        d.pop("commonality")
+    print(json.dumps(d, indent=2))
+    return 0
+
+
+def cmd_export_uvl(a: argparse.Namespace) -> int:
+    from amlops.variability import to_uvl
+    text = to_uvl(knowledge.feature_model())
+    if a.output:
+        Path(a.output).write_text(text, encoding="utf-8")
+    else:
+        print(text, end="")
+    return 0
+
+
+def cmd_schema(a: argparse.Namespace) -> int:
+    from amlops.dsl.schema import dsl_schema
+    text = json.dumps(dsl_schema(), indent=2)
+    if a.output:
+        Path(a.output).write_text(text + "\n", encoding="utf-8")
+    else:
+        print(text)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="amlops", description="AdaptiveMLOps DSL toolchain (GetCaaS prototype)")
     ap.add_argument("--version", action="version", version=__version__)
@@ -98,6 +128,15 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--seed", type=int, default=0)
     k = sub.add_parser("knowledge", help="summarise the packaged domain knowledge")
     k.set_defaults(fn=cmd_knowledge)
+    an = sub.add_parser("analyse", help="automated analysis of the feature model (#configurations, core, dead...)")
+    an.add_argument("--commonality", action="store_true")
+    an.set_defaults(fn=cmd_analyse)
+    ux = sub.add_parser("export-uvl", help="export the feature model in UVL (FeatureIDE, flamapy)")
+    ux.add_argument("-o", "--output")
+    ux.set_defaults(fn=cmd_export_uvl)
+    sc = sub.add_parser("schema", help="print the JSON Schema of the DSL (editor completion)")
+    sc.add_argument("-o", "--output")
+    sc.set_defaults(fn=cmd_schema)
     a = ap.parse_args(argv)
     try:
         return a.fn(a)
