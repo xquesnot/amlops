@@ -118,6 +118,7 @@ amlops export-uvl -o model.uvl                           # feature model au form
 amlops schema -o amlops.schema.json                      # schéma JSON du DSL (complétion dans les éditeurs)
 pytest -q                                                # 70 tests
 python experiments/run_all.py                            # régénère tous les chiffres de l'article (E1 à E7)
+python experiments/sovereignty.py                        # E8 : prix de la souveraineté sur données publiques (data/public-2026-09-29)
 ```
 
 Un modèle non expert tient en cinq lignes :

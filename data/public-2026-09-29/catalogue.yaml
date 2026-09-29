@@ -1,0 +1,474 @@
+retrieved: '2026-09-29'
+currency: EUR/hour, on-demand, excl. VAT
+fx_usd_eur: 1.1378
+pue_assumed: 1.3
+grid_gco2_per_kwh:
+  source: Ember, Yearly electricity data, 2025, variable CO2 intensity (CC BY 4.0)
+  values:
+    FR: 41.45
+    NL: 253.56
+    PL: 590.8
+    DE: 329.65
+egress_eur_per_gb:
+  scaleway: 0.0
+  ovhcloud: 0.0
+  outscale: 0.0
+  aws: 0.0791
+levels:
+  L0:
+    label: no constraint
+    required: []
+  L1:
+    label: EU-headquartered provider
+    required:
+    - EUHQ
+  L2:
+    label: HDS certified
+    required:
+    - HDS
+  L3:
+    label: HDS and EU-headquartered
+    required:
+    - HDS
+    - EUHQ
+  L4:
+    label: SecNumCloud qualified
+    required:
+    - SecNumCloud
+notes:
+- Outscale publishes unit prices per vCore and GiB; CPU and GPU host prices are derived (see prices_labels.md). Outscale offers an L40, not an
+  L4.
+- Outscale power and embedded emissions are proxied by the Scaleway instance of the same size (Outscale is not covered by BoaviztAPI); the L40
+  by the Scaleway L40S.
+- All L4 offers use the BoaviztAPI Scaleway L4-1-24G power and embedded figures (same GPU model); the AWS g6 archetype in BoaviztAPI reports a
+  lower GPU power.
+- OVHcloud l4-90 in Limburg is excluded (availability not confirmed on official pages). Scaleway has no GPU in nl-ams.
+- 'HDS: provider-level certifications for Scaleway, OVHcloud (option on project), AWS; Outscale only for cloudgouv-eu-west-1 in this study. Per-region
+  HDS scope of Scaleway not found.'
+- 'SecNumCloud: only Outscale cloudgouv-eu-west-1 among priced public offers (ANSSI catalogue of 15/09/2026; validity until 30/11/2026).'
+offers:
+- provider: scaleway
+  region: fr-par
+  country: FR
+  class: cpu-4
+  instance: POP2-4C-16G
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.147
+  avg_power_w: 20.037
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI scaleway/pop2-4c-16g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: fr-par
+  country: FR
+  class: cpu-16
+  instance: POP2-16C-64G
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.59
+  avg_power_w: 80.147
+  embedded_kgco2e_per_hour: 0.003
+  power_model: BoaviztAPI scaleway/pop2-16c-64g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: nl-ams
+  country: NL
+  class: cpu-4
+  instance: POP2-4C-16G
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.147
+  avg_power_w: 20.037
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI scaleway/pop2-4c-16g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: nl-ams
+  country: NL
+  class: cpu-16
+  instance: POP2-16C-64G
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.59
+  avg_power_w: 80.147
+  embedded_kgco2e_per_hour: 0.003
+  power_model: BoaviztAPI scaleway/pop2-16c-64g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: pl-waw
+  country: PL
+  class: cpu-4
+  instance: POP2-4C-16G
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.147
+  avg_power_w: 20.037
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI scaleway/pop2-4c-16g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: pl-waw
+  country: PL
+  class: cpu-16
+  instance: POP2-16C-64G
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.59
+  avg_power_w: 80.147
+  embedded_kgco2e_per_hour: 0.003
+  power_model: BoaviztAPI scaleway/pop2-16c-64g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/virtual-instances/
+- provider: scaleway
+  region: fr-par
+  country: FR
+  class: gpu-l4
+  instance: L4-1-24G
+  vcpu: 8
+  mem_gb: 48
+  gpu: 1
+  eur_per_hour: 0.7875
+  avg_power_w: 47.982
+  embedded_kgco2e_per_hour: 0.0053
+  power_model: BoaviztAPI scaleway/l4-1-24g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/gpu/
+- provider: scaleway
+  region: pl-waw
+  country: PL
+  class: gpu-l4
+  instance: L4-1-24G
+  vcpu: 8
+  mem_gb: 48
+  gpu: 1
+  eur_per_hour: 0.7875
+  avg_power_w: 47.982
+  embedded_kgco2e_per_hour: 0.0053
+  power_model: BoaviztAPI scaleway/l4-1-24g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.scaleway.com/en/pricing/gpu/
+- provider: ovhcloud
+  region: gra
+  country: FR
+  class: cpu-4
+  instance: b3-16
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.1023
+  avg_power_w: 14.75
+  embedded_kgco2e_per_hour: 0.0009
+  power_model: BoaviztAPI ovhcloud/b3-16, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.ovhcloud.com/fr/public-cloud/prices/ (cross-checked with https://api.ovh.com/1.0/order/catalog/public/cloud?ovhSubsidiary=FR)
+- provider: ovhcloud
+  region: gra
+  country: FR
+  class: cpu-16
+  instance: b3-64
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.4092
+  avg_power_w: 59.002
+  embedded_kgco2e_per_hour: 0.0035
+  power_model: BoaviztAPI ovhcloud/b3-64, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.ovhcloud.com/fr/public-cloud/prices/ (cross-checked with https://api.ovh.com/1.0/order/catalog/public/cloud?ovhSubsidiary=FR)
+- provider: ovhcloud
+  region: gra
+  country: FR
+  class: gpu-l4
+  instance: l4-90
+  vcpu: 22
+  mem_gb: 90
+  gpu: 1
+  eur_per_hour: 0.75
+  avg_power_w: 47.982
+  embedded_kgco2e_per_hour: 0.0053
+  power_model: BoaviztAPI scaleway/l4-1-24g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.ovhcloud.com/fr/public-cloud/prices/ (cross-checked with https://api.ovh.com/1.0/order/catalog/public/cloud?ovhSubsidiary=FR)
+- provider: ovhcloud
+  region: lim
+  country: DE
+  class: cpu-4
+  instance: b3-16
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.1023
+  avg_power_w: 14.75
+  embedded_kgco2e_per_hour: 0.0009
+  power_model: BoaviztAPI ovhcloud/b3-16, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.ovhcloud.com/fr/public-cloud/prices/ (cross-checked with https://api.ovh.com/1.0/order/catalog/public/cloud?ovhSubsidiary=FR)
+- provider: ovhcloud
+  region: lim
+  country: DE
+  class: cpu-16
+  instance: b3-64
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.4092
+  avg_power_w: 59.002
+  embedded_kgco2e_per_hour: 0.0035
+  power_model: BoaviztAPI ovhcloud/b3-64, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  price_source: https://www.ovhcloud.com/fr/public-cloud/prices/ (cross-checked with https://api.ovh.com/1.0/order/catalog/public/cloud?ovhSubsidiary=FR)
+- provider: outscale
+  region: eu-west-2
+  country: FR
+  class: cpu-4
+  instance: tinav7.c4r16p2
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.232
+  avg_power_w: 20.037
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI scaleway/pop2-4c-16g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  price_source: https://en.outscale.com/pricing/
+- provider: outscale
+  region: eu-west-2
+  country: FR
+  class: cpu-16
+  instance: tinav7.c16r64p2
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.928
+  avg_power_w: 80.147
+  embedded_kgco2e_per_hour: 0.003
+  power_model: BoaviztAPI scaleway/pop2-16c-64g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  price_source: https://en.outscale.com/pricing/
+- provider: outscale
+  region: eu-west-2
+  country: FR
+  class: gpu-l4
+  instance: tinav7.c8r48p1 + 1x flexible GPU L40
+  vcpu: 8
+  mem_gb: 48
+  gpu: 1
+  eur_per_hour: 2.584
+  avg_power_w: 66.113
+  embedded_kgco2e_per_hour: 0.0071
+  power_model: BoaviztAPI scaleway/l40s-1-48g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  price_source: https://en.outscale.com/pricing/ ; https://docs.outscale.com/en/userguide/VM-Types.html
+- provider: outscale
+  region: cloudgouv-eu-west-1
+  country: FR
+  class: cpu-4
+  instance: tinav7.c4r16p2
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.28
+  avg_power_w: 20.037
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI scaleway/pop2-4c-16g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  - SecNumCloud
+  price_source: https://en.outscale.com/pricing/
+- provider: outscale
+  region: cloudgouv-eu-west-1
+  country: FR
+  class: cpu-16
+  instance: tinav7.c16r64p2
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 1.12
+  avg_power_w: 80.147
+  embedded_kgco2e_per_hour: 0.003
+  power_model: BoaviztAPI scaleway/pop2-16c-64g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  - SecNumCloud
+  price_source: https://en.outscale.com/pricing/
+- provider: outscale
+  region: cloudgouv-eu-west-1
+  country: FR
+  class: gpu-l4
+  instance: tinav7.c8r48p1 + 1x flexible GPU L40
+  vcpu: 8
+  mem_gb: 48
+  gpu: 1
+  eur_per_hour: 3.104
+  avg_power_w: 66.113
+  embedded_kgco2e_per_hour: 0.0071
+  power_model: BoaviztAPI scaleway/l40s-1-48g, 50% load
+  labels:
+  - EU
+  - EUHQ
+  - HDS
+  - SecNumCloud
+  price_source: https://en.outscale.com/pricing/ ; https://docs.outscale.com/en/userguide/VM-Types.html
+- provider: aws
+  region: eu-west-3
+  country: FR
+  class: cpu-4
+  instance: m7i.xlarge
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.20671
+  avg_power_w: 22.006
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI aws/m7i.xlarge, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Paris)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)
+- provider: aws
+  region: eu-west-3
+  country: FR
+  class: cpu-16
+  instance: m7i.4xlarge
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.82686
+  avg_power_w: 88.025
+  embedded_kgco2e_per_hour: 0.0031
+  power_model: BoaviztAPI aws/m7i.4xlarge, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Paris)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)
+- provider: aws
+  region: eu-west-3
+  country: FR
+  class: gpu-l4
+  instance: g6.xlarge
+  vcpu: 4
+  mem_gb: 16
+  gpu: 1
+  eur_per_hour: 0.89787
+  avg_power_w: 47.982
+  embedded_kgco2e_per_hour: 0.0053
+  power_model: BoaviztAPI scaleway/l4-1-24g, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Paris)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)
+- provider: aws
+  region: eu-central-1
+  country: DE
+  class: cpu-4
+  instance: m7i.xlarge
+  vcpu: 4
+  mem_gb: 16
+  gpu: 0
+  eur_per_hour: 0.21225
+  avg_power_w: 22.006
+  embedded_kgco2e_per_hour: 0.00077
+  power_model: BoaviztAPI aws/m7i.xlarge, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Frankfurt)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)
+- provider: aws
+  region: eu-central-1
+  country: DE
+  class: cpu-16
+  instance: m7i.4xlarge
+  vcpu: 16
+  mem_gb: 64
+  gpu: 0
+  eur_per_hour: 0.84901
+  avg_power_w: 88.025
+  embedded_kgco2e_per_hour: 0.0031
+  power_model: BoaviztAPI aws/m7i.4xlarge, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Frankfurt)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)
+- provider: aws
+  region: eu-central-1
+  country: DE
+  class: gpu-l4
+  instance: g6.xlarge
+  vcpu: 4
+  mem_gb: 16
+  gpu: 1
+  eur_per_hour: 0.88451
+  avg_power_w: 47.982
+  embedded_kgco2e_per_hour: 0.0053
+  power_model: BoaviztAPI scaleway/l4-1-24g, 50% load
+  labels:
+  - EU
+  - HDS
+  price_source: https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU%20(Frankfurt)/Linux/index.json
+    (data behind https://aws.amazon.com/ec2/pricing/on-demand/)

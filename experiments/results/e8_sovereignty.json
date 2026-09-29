@@ -1,0 +1,1143 @@
+{
+  "retrieved": "2026-09-29",
+  "levels": {
+    "L0": "no constraint",
+    "L1": "EU-headquartered provider",
+    "L2": "HDS certified",
+    "L3": "HDS and EU-headquartered",
+    "L4": "SecNumCloud qualified"
+  },
+  "placements": {
+    "churn": {
+      "L0": {
+        "cost": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568342090000004,
+          "carbon_emb": 1.98936,
+          "carbon": 3.7461942090000004,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L1": {
+        "cost": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568342090000004,
+          "carbon_emb": 1.98936,
+          "carbon": 3.7461942090000004,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L2": {
+        "cost": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568342090000004,
+          "carbon_emb": 1.98936,
+          "carbon": 3.7461942090000004,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L3": {
+        "cost": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568342090000004,
+          "carbon_emb": 1.98936,
+          "carbon": 3.7461942090000004,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 226.12392,
+          "carbon_op": 1.7568346400800001,
+          "carbon_emb": 1.98896,
+          "carbon": 3.74579464008,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L4": {
+        "cost": {
+          "cost": 618.912,
+          "carbon_op": 2.3865550539480003,
+          "carbon_emb": 1.7020079999999997,
+          "carbon": 4.0885630539480005,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 618.912,
+          "carbon_op": 2.386554838408,
+          "carbon_emb": 1.7016879999999999,
+          "carbon": 4.088242838408,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        },
+        "balanced": {
+          "cost": 618.912,
+          "carbon_op": 2.386554838408,
+          "carbon_emb": 1.7016879999999999,
+          "carbon": 4.088242838408,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        }
+      }
+    },
+    "health": {
+      "L0": {
+        "cost": {
+          "cost": 226.10346,
+          "carbon_op": 1.75667524825,
+          "carbon_emb": 1.9891800000000002,
+          "carbon": 3.7458552482500003,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        }
+      },
+      "L1": {
+        "cost": {
+          "cost": 226.10346,
+          "carbon_op": 1.75667524825,
+          "carbon_emb": 1.9891800000000002,
+          "carbon": 3.7458552482500003,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        }
+      },
+      "L2": {
+        "cost": {
+          "cost": 226.10346,
+          "carbon_op": 1.75667524825,
+          "carbon_emb": 1.9891800000000002,
+          "carbon": 3.7458552482500003,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        }
+      },
+      "L3": {
+        "cost": {
+          "cost": 226.10346,
+          "carbon_op": 1.75667524825,
+          "carbon_emb": 1.9891800000000002,
+          "carbon": 3.7458552482500003,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 226.10346,
+          "carbon_op": 1.7566756793300002,
+          "carbon_emb": 1.98878,
+          "carbon": 3.74545567933,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        }
+      },
+      "L4": {
+        "cost": {
+          "cost": 618.856,
+          "carbon_op": 2.386339115199,
+          "carbon_emb": 1.701854,
+          "carbon": 4.088193115199,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 618.856,
+          "carbon_op": 2.3863388996590005,
+          "carbon_emb": 1.7015339999999997,
+          "carbon": 4.087872899659001,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        },
+        "balanced": {
+          "cost": 618.856,
+          "carbon_op": 2.3863388996590005,
+          "carbon_emb": 1.7015339999999997,
+          "carbon": 4.087872899659001,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        }
+      }
+    },
+    "maintenance": {
+      "L0": {
+        "cost": {
+          "cost": 311.68524,
+          "carbon_op": 2.38269145634,
+          "carbon_emb": 2.72652,
+          "carbon": 5.10921145634,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 312.13524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 311.68524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L1": {
+        "cost": {
+          "cost": 311.68524,
+          "carbon_op": 2.38269145634,
+          "carbon_emb": 2.72652,
+          "carbon": 5.10921145634,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 312.13524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 311.68524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L2": {
+        "cost": {
+          "cost": 311.68524,
+          "carbon_op": 2.38269145634,
+          "carbon_emb": 2.72652,
+          "carbon": 5.10921145634,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 312.13524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 311.68524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L3": {
+        "cost": {
+          "cost": 311.68524,
+          "carbon_op": 2.38269145634,
+          "carbon_emb": 2.72652,
+          "carbon": 5.10921145634,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 312.13524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra",
+            "scaleway/fr-par"
+          ]
+        },
+        "balanced": {
+          "cost": 311.68524,
+          "carbon_op": 2.3826923184999997,
+          "carbon_emb": 2.72572,
+          "carbon": 5.108412318499999,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L4": {
+        "cost": {
+          "cost": 865.712,
+          "carbon_op": 3.2373478407660006,
+          "carbon_emb": 2.363476,
+          "carbon": 5.600823840766001,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 865.712,
+          "carbon_op": 3.2373474096860004,
+          "carbon_emb": 2.3628359999999997,
+          "carbon": 5.600183409686,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        },
+        "balanced": {
+          "cost": 865.712,
+          "carbon_op": 3.2373474096860004,
+          "carbon_emb": 2.3628359999999997,
+          "carbon": 5.600183409686,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        }
+      }
+    },
+    "retail": {
+      "L0": {
+        "cost": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147012202500001,
+          "carbon_emb": 0.69606,
+          "carbon": 1.31076122025,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L1": {
+        "cost": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147012202500001,
+          "carbon_emb": 0.69606,
+          "carbon": 1.31076122025,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L2": {
+        "cost": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147012202500001,
+          "carbon_emb": 0.69606,
+          "carbon": 1.31076122025,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L3": {
+        "cost": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147012202500001,
+          "carbon_emb": 0.69606,
+          "carbon": 1.31076122025,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        },
+        "balanced": {
+          "cost": 79.11882,
+          "carbon_op": 0.6147018668700001,
+          "carbon_emb": 0.6954600000000001,
+          "carbon": 1.3101618668700001,
+          "locations": [
+            "ovhcloud/gra"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "ovhcloud/gra"
+          ]
+        }
+      },
+      "L4": {
+        "cost": {
+          "cost": 216.55200000000002,
+          "carbon_op": 0.8350351423830001,
+          "carbon_emb": 0.5955179999999999,
+          "carbon": 1.430553142383,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true
+        },
+        "carbon": {
+          "cost": 216.55200000000002,
+          "carbon_op": 0.8350348190730001,
+          "carbon_emb": 0.595038,
+          "carbon": 1.430072819073,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        },
+        "balanced": {
+          "cost": 216.55200000000002,
+          "carbon_op": 0.8350348190730001,
+          "carbon_emb": 0.595038,
+          "carbon": 1.430072819073,
+          "locations": [
+            "outscale/cloudgouv-eu-west-1"
+          ],
+          "optimal": true,
+          "locations_without_embedded": [
+            "outscale/cloudgouv-eu-west-1"
+          ]
+        }
+      }
+    }
+  },
+  "sensitivity": {
+    "none": {
+      "churn": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382212
+      },
+      "health": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382207
+      },
+      "maintenance": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7775200391266521
+      },
+      "retail": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382212
+      }
+    },
+    "ovhcloud": {
+      "churn": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 0.9047619047619051
+      },
+      "health": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 0.9047619047619051
+      },
+      "maintenance": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 0.948074859763957
+      },
+      "retail": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 0.9047619047619051
+      }
+    },
+    "scaleway": {
+      "churn": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382212
+      },
+      "health": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382207
+      },
+      "maintenance": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7775200391266521
+      },
+      "retail": {
+        "L0": 0.0,
+        "L1": 0.0,
+        "L2": 0.0,
+        "L3": 0.0,
+        "L4": 1.7370478983382212
+      }
+    },
+    "ovhcloud+scaleway": {
+      "churn": {
+        "L0": 0.0,
+        "L1": 0.12234531469208076,
+        "L2": 0.0,
+        "L3": 0.3545546901456147,
+        "L4": 0.3545546901456147
+      },
+      "health": {
+        "L0": 0.0,
+        "L1": 0.12234531469208054,
+        "L2": 0.0,
+        "L3": 0.35455469014561447,
+        "L4": 0.35455469014561447
+      },
+      "maintenance": {
+        "L0": 0.0,
+        "L1": 0.1527369001858052,
+        "L2": 0.0,
+        "L3": 0.3909522945356074,
+        "L4": 0.3909522945356074
+      },
+      "retail": {
+        "L0": 0.0,
+        "L1": 0.12234531469208076,
+        "L2": 0.0,
+        "L3": 0.3545546901456147,
+        "L4": 0.3545546901456147
+      }
+    }
+  },
+  "fr_grid_2025": {
+    "stats": {
+      "hours": 8759,
+      "mean": 17.314362370133576,
+      "p5": 7.0,
+      "p95": 42.0,
+      "min": 5.0,
+      "max": 57.0,
+      "mean_daily_range": 10.976648351648352
+    },
+    "shifting": {
+      "1h_6h": {
+        "job_hours": 1,
+        "window_hours": 6,
+        "saving_oracle": 0.1346280567559065,
+        "saving_naive": 0.06689845858375143
+      },
+      "1h_12h": {
+        "job_hours": 1,
+        "window_hours": 12,
+        "saving_oracle": 0.2022058335875635,
+        "saving_naive": 0.09583703625101136
+      },
+      "1h_24h": {
+        "job_hours": 1,
+        "window_hours": 24,
+        "saving_oracle": 0.2635356856695448,
+        "saving_naive": 0.10713513908883265
+      },
+      "3h_6h": {
+        "job_hours": 3,
+        "window_hours": 6,
+        "saving_oracle": 0.08045808299967638,
+        "saving_naive": 0.042505220036108904
+      },
+      "3h_12h": {
+        "job_hours": 3,
+        "window_hours": 12,
+        "saving_oracle": 0.1718266459176937,
+        "saving_naive": 0.08826526552193747
+      },
+      "3h_24h": {
+        "job_hours": 3,
+        "window_hours": 24,
+        "saving_oracle": 0.24424589697077137,
+        "saving_naive": 0.10716244682489573
+      },
+      "6h_6h": {
+        "job_hours": 6,
+        "window_hours": 6,
+        "saving_oracle": 0.0,
+        "saving_naive": 0.0
+      },
+      "6h_12h": {
+        "job_hours": 6,
+        "window_hours": 12,
+        "saving_oracle": 0.11040945495331833,
+        "saving_naive": 0.05747840284664951
+      },
+      "6h_24h": {
+        "job_hours": 6,
+        "window_hours": 24,
+        "saving_oracle": 0.2053300714262265,
+        "saving_naive": 0.08916784251547427
+      }
+    },
+    "diurnal_utc": [
+      {
+        "hour": 0,
+        "mean": 17.431506849315067,
+        "p10": 8.0,
+        "p90": 32.5
+      },
+      {
+        "hour": 1,
+        "mean": 16.293150684931508,
+        "p10": 8.0,
+        "p90": 28.5
+      },
+      {
+        "hour": 2,
+        "mean": 15.92054794520548,
+        "p10": 8.0,
+        "p90": 26.5
+      },
+      {
+        "hour": 3,
+        "mean": 15.868493150684932,
+        "p10": 8.5,
+        "p90": 26.0
+      },
+      {
+        "hour": 4,
+        "mean": 15.963013698630137,
+        "p10": 9.0,
+        "p90": 25.5
+      },
+      {
+        "hour": 5,
+        "mean": 16.38082191780822,
+        "p10": 8.0,
+        "p90": 28.5
+      },
+      {
+        "hour": 6,
+        "mean": 17.454794520547946,
+        "p10": 8.0,
+        "p90": 32.5
+      },
+      {
+        "hour": 7,
+        "mean": 18.26164383561644,
+        "p10": 8.0,
+        "p90": 37.5
+      },
+      {
+        "hour": 8,
+        "mean": 18.154794520547945,
+        "p10": 8.0,
+        "p90": 38.5
+      },
+      {
+        "hour": 9,
+        "mean": 17.4,
+        "p10": 7.5,
+        "p90": 37.5
+      },
+      {
+        "hour": 10,
+        "mean": 16.204109589041096,
+        "p10": 7.0,
+        "p90": 35.0
+      },
+      {
+        "hour": 11,
+        "mean": 15.35890410958904,
+        "p10": 7.0,
+        "p90": 31.5
+      },
+      {
+        "hour": 12,
+        "mean": 14.92054794520548,
+        "p10": 7.0,
+        "p90": 29.0
+      },
+      {
+        "hour": 13,
+        "mean": 14.92054794520548,
+        "p10": 7.0,
+        "p90": 28.5
+      },
+      {
+        "hour": 14,
+        "mean": 15.12054794520548,
+        "p10": 7.5,
+        "p90": 28.0
+      },
+      {
+        "hour": 15,
+        "mean": 15.601369863013698,
+        "p10": 8.0,
+        "p90": 30.0
+      },
+      {
+        "hour": 16,
+        "mean": 16.28767123287671,
+        "p10": 8.0,
+        "p90": 35.0
+      },
+      {
+        "hour": 17,
+        "mean": 17.57945205479452,
+        "p10": 8.0,
+        "p90": 36.0
+      },
+      {
+        "hour": 18,
+        "mean": 19.235616438356164,
+        "p10": 8.0,
+        "p90": 39.0
+      },
+      {
+        "hour": 19,
+        "mean": 20.60821917808219,
+        "p10": 8.0,
+        "p90": 39.5
+      },
+      {
+        "hour": 20,
+        "mean": 20.875342465753423,
+        "p10": 8.0,
+        "p90": 39.0
+      },
+      {
+        "hour": 21,
+        "mean": 20.535616438356165,
+        "p10": 8.0,
+        "p90": 38.0
+      },
+      {
+        "hour": 22,
+        "mean": 20.09041095890411,
+        "p10": 8.0,
+        "p90": 37.0
+      },
+      {
+        "hour": 23,
+        "mean": 19.082417582417584,
+        "p10": 8.0,
+        "p90": 36.5
+      }
+    ]
+  }
+}

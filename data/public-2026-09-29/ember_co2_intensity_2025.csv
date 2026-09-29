@@ -1,0 +1,6 @@
+# Ember, Yearly electricity data (yearly_full_release_long_format.csv), retrieved 2026-09-29, licence CC BY 4.0
+area,year,gco2_per_kwh
+France,2025,41.45
+Germany,2025,329.65
+Netherlands,2025,253.56
+Poland,2025,590.8

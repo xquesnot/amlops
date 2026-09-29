@@ -1,0 +1,74 @@
+[
+ {
+  "provider": "scaleway",
+  "instance": "pop2-4c-16g",
+  "avg_power_w": 20.0367825,
+  "embedded_kg_per_h": 0.00077,
+  "embedded_min": 0.0004702,
+  "embedded_max": 0.00132
+ },
+ {
+  "provider": "scaleway",
+  "instance": "pop2-16c-64g",
+  "avg_power_w": 80.14713,
+  "embedded_kg_per_h": 0.003,
+  "embedded_min": 0.001856,
+  "embedded_max": 0.005188
+ },
+ {
+  "provider": "scaleway",
+  "instance": "l4-1-24g",
+  "avg_power_w": 47.98241,
+  "embedded_kg_per_h": 0.0053,
+  "embedded_min": 0.004436,
+  "embedded_max": 0.006929
+ },
+ {
+  "provider": "ovhcloud",
+  "instance": "b3-16",
+  "avg_power_w": 14.750448125000002,
+  "embedded_kg_per_h": 0.0009,
+  "embedded_min": 0.0005237,
+  "embedded_max": 0.001613
+ },
+ {
+  "provider": "ovhcloud",
+  "instance": "b3-64",
+  "avg_power_w": 59.00179250000001,
+  "embedded_kg_per_h": 0.0035,
+  "embedded_min": 0.002095,
+  "embedded_max": 0.00645
+ },
+ {
+  "provider": "aws",
+  "instance": "m7i.xlarge",
+  "avg_power_w": 22.00629083333333,
+  "embedded_kg_per_h": 0.00077,
+  "embedded_min": 0.0004509,
+  "embedded_max": 0.001343
+ },
+ {
+  "provider": "aws",
+  "instance": "m7i.4xlarge",
+  "avg_power_w": 88.02516333333332,
+  "embedded_kg_per_h": 0.0031,
+  "embedded_min": 0.001804,
+  "embedded_max": 0.005372
+ },
+ {
+  "provider": "aws",
+  "instance": "g6.xlarge",
+  "avg_power_w": 15.372361666666665,
+  "embedded_kg_per_h": 0.0018,
+  "embedded_min": 0.001328,
+  "embedded_max": 0.002776
+ },
+ {
+  "provider": "scaleway",
+  "instance": "l40s-1-48g",
+  "avg_power_w": 66.11296999999999,
+  "embedded_kg_per_h": 0.0071,
+  "embedded_min": 0.005431,
+  "embedded_max": 0.01029
+ }
+]
