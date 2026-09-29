@@ -1,0 +1,148 @@
+{
+  "schedule": {
+    "day_hours": 12.5,
+    "week_on_hours": 62.5,
+    "on_fraction": 0.37202380952380953
+  },
+  "c1": {
+    "floor_total": 992.72,
+    "freeze_cost": 80.4168,
+    "inference": {
+      "deepseek-v4-flash": 62.208,
+      "gpt-oss-120b": 31.680000000000003,
+      "mistral-small-24b": 19.008,
+      "mistral-medium-128b": 263.808
+    },
+    "month_total": 1135.3448,
+    "share_nodes": 0.49278749294866625,
+    "share_db": 0.4129764686920783,
+    "share_inference": 0.054792165340432256
+  },
+  "c2": {
+    "gpu_always": 1073.1,
+    "gpu_scheduled": 399.21875,
+    "gpu_workshop": 55.125,
+    "break_even_exchanges_per_month": {
+      "deepseek-v4-flash": {
+        "always": 993611.111111111,
+        "scheduled": 369646.99074074073
+      },
+      "gpt-oss-120b": {
+        "always": 1951090.9090909087,
+        "scheduled": 725852.2727272727
+      },
+      "mistral-small-24b": {
+        "always": 3251818.1818181816,
+        "scheduled": 1209753.7878787878
+      },
+      "mistral-medium-128b": {
+        "always": 234301.3100436681,
+        "scheduled": 87165.66593886464
+      }
+    },
+    "fits_single_l40s": [
+      "mistral-small-24b"
+    ]
+  },
+  "c3": {
+    "floor": {
+      "op": 4.7290586030999995,
+      "emb": 3.2850000000000006
+    },
+    "freeze": {
+      "op": 0.7773794964000001,
+      "emb": 0.54
+    },
+    "gpu_always": {
+      "op": 2.6006242736500003,
+      "emb": 5.183000000000001
+    },
+    "gpu_sched": {
+      "op": 0.9674941494233633,
+      "emb": 1.9281994047619049
+    },
+    "whatif_floor": {
+      "FR": {
+        "op": 4.7290586030999995,
+        "emb": 3.2850000000000006,
+        "total": 8.0140586031,
+        "emb_share": 0.40990466412727455
+      },
+      "NL": {
+        "op": 28.92883231368,
+        "emb": 3.2850000000000006,
+        "total": 32.21383231368,
+        "emb_share": 0.10197482770794038
+      },
+      "DE": {
+        "op": 37.6099920027,
+        "emb": 3.2850000000000006,
+        "total": 40.8949920027,
+        "emb_share": 0.08032768412775618
+      },
+      "PL": {
+        "op": 67.4047725624,
+        "emb": 3.2850000000000006,
+        "total": 70.6897725624,
+        "emb_share": 0.04647065453634374
+      }
+    }
+  },
+  "grid_sept": {
+    "teaching_mean": 8.181818181818182,
+    "night_mean": 9.297520661157025
+  },
+  "c4": {
+    "vcpu_floor": 24,
+    "actual_compute_month": 489.20219999999995,
+    "levels": {
+      "L0": {
+        "label": "no constraint",
+        "cpu_offer": "ovhcloud b3-16",
+        "compute_month": 448.074,
+        "gpu_offer": "ovhcloud l4-90",
+        "gpu_sched_month": 203.68303571428572,
+        "vs_actual": 0.9159280150416332
+      },
+      "L1": {
+        "label": "EU-headquartered provider",
+        "cpu_offer": "ovhcloud b3-16",
+        "compute_month": 448.074,
+        "gpu_offer": "ovhcloud l4-90",
+        "gpu_sched_month": 203.68303571428572,
+        "vs_actual": 0.9159280150416332
+      },
+      "L2": {
+        "label": "HDS certified",
+        "cpu_offer": "ovhcloud b3-16",
+        "compute_month": 448.074,
+        "gpu_offer": "ovhcloud l4-90",
+        "gpu_sched_month": 203.68303571428572,
+        "vs_actual": 0.9159280150416332
+      },
+      "L3": {
+        "label": "HDS and EU-headquartered",
+        "cpu_offer": "ovhcloud b3-16",
+        "compute_month": 448.074,
+        "gpu_offer": "ovhcloud l4-90",
+        "gpu_sched_month": 203.68303571428572,
+        "vs_actual": 0.9159280150416332
+      },
+      "L4": {
+        "label": "SecNumCloud qualified",
+        "cpu_offer": "outscale tinav7.c4r16p2",
+        "compute_month": 1226.4,
+        "gpu_offer": "outscale tinav7.c8r48p1 (L40)",
+        "gpu_sched_month": 842.9761904761905,
+        "vs_actual": 2.506938848598801
+      }
+    }
+  },
+  "c5": {
+    "limit_lo": 2000,
+    "limit_hi": 2500,
+    "headroom_lo": 3.125,
+    "headroom_hi": 3.90625,
+    "cold_factor": 40.40677966101695
+  }
+}

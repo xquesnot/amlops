@@ -1,0 +1,79 @@
+# Industrial case E9: an educational LLM platform in production (anonymised).
+# Aggregates only: no conversation, no account, no personal data.
+# Publication of these aggregates was authorised by the client.
+# Figures come from the client project's measurement records (load campaigns,
+# consolidated benchmark exchanges, cost inventory, go-live report) and from
+# public pages retrieved on 2026-09-29 (Scaleway prices, BoaviztAPI).
+case:
+  kind: conversational LLM platform for a first-year engineering course
+  client: French higher-education institution (anonymised)
+  planned_users: 640
+  student_accounts: 592
+  workshop_days: 3
+  provider: scaleway
+  region: fr-par
+  country: FR
+  level: L1            # EU-headquartered provider required; no HDS or SecNumCloud requirement
+  hours_per_month: 730
+  architecture: managed Kubernetes; chat UI, agent backend, moderation, queue; managed PostgreSQL; managed inference API
+
+schedule:              # automatic scale-down outside teaching hours (weekdays)
+  wake: "07:30"
+  sleep: "20:00"
+  days_per_week: 5
+
+inference_managed:     # measured 2026-08-19/20, 10 exchanges per model, full teaching scenario, streaming
+  price_grid_date: '2026-08-19'
+  planned_exchanges: 57600      # 3 workshop days, planning volume
+  selected: deepseek-v4-flash
+  provider_limits: {concurrent_requests: 50, requests_per_minute: 600, tokens_per_minute: 1000000}
+  platform_capacity_setting: 48  # concurrent generations, below the provider cap
+  models:
+    deepseek-v4-flash:  {eur_per_exchange: 0.00108, tokens_in: 2044, tokens_out: 325, ttft_median_s: 0.74, fits_single_l40s: false}
+    gpt-oss-120b:       {eur_per_exchange: 0.00055, tokens_in: 1534, tokens_out: 538, ttft_median_s: 1.26, fits_single_l40s: false}
+    mistral-small-24b:  {eur_per_exchange: 0.00033, tokens_in: 2025, tokens_out: 81,  ttft_median_s: 0.16, fits_single_l40s: true}
+    mistral-medium-128b: {eur_per_exchange: 0.00458, tokens_in: 2037, tokens_out: 203, ttft_median_s: 0.18, fits_single_l40s: false}
+
+self_hosted_gpu:       # alternative discarded by the client before go-live
+  instance: L40S-1-48G
+  eur_per_hour: 1.47
+  price_source: https://www.scaleway.com/en/l40s-gpu-instance/ (retrieved 2026-09-29)
+  avg_power_w: 66.113          # BoaviztAPI scaleway/l40s-1-48g, 50 % load
+  embedded_kgco2e_per_hour: 0.0071
+  embedded_min: 0.005431
+  embedded_max: 0.01029
+
+platform:
+  node: {instance: PRO2-S, vcpu: 8, mem_gb: 32, eur_per_hour: 0.22338}
+  node_proxy: {instance: pop2-8c-32g, avg_power_w: 40.074, embedded_kgco2e_per_hour: 0.0015, embedded_min: 0.000932, embedded_max: 0.00261}
+  floor_nodes: 3
+  ceiling_nodes: 6
+  workshop_nodes: 8            # frozen floor during the three workshop days
+  production_floor_eur_month:  # public catalogue prices of 2026-08-20, 730 h/month
+    nodes: 489.20
+    managed_postgresql_ha: 409.97
+    root_volumes: 28.47
+    public_gateway: 18.98
+    load_balancer: 16.79
+    observability_samples: 15.75
+    database_storage_backups: 12.93
+    observability_logs: 0.63
+  development_eur_month: 322
+
+load_campaign:         # through the load balancer, real authentication, development cluster
+  columns: [sessions, login_p95_s, catalogue_p95_s, failures_pct, cluster_cpu_pct]
+  rows:
+  - [640, 0.37, 0.12, 0.0, null]
+  - [1000, 0.59, 0.21, 0.0, 39]
+  - [1500, 0.72, 0.40, 0.0, 52]
+  - [2000, 1.21, 0.82, 0.0, 68]
+  - [2500, 6.56, 3.80, 0.03, 78]
+  - [3000, 11.92, 8.43, 0.03, 90]
+  cold_start_login_s: 23.84
+  warm_login_s: 0.59
+
+production_probe:      # 11 student questions after go-live
+  questions: 11
+  ttft_median_s: 0.76
+  total_median_s: 7.5
+  success_pct: 100
