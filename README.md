@@ -114,6 +114,7 @@ amlops schema -o amlops.schema.json                      # JSON Schema of the DS
 pytest -q                                                # 70 tests
 python experiments/run_all.py                            # regenerates all paper numbers (E1 to E7)
 python experiments/sovereignty.py                        # E8: price of sovereignty on public data (data/public-2026-09-29)
+python experiments/case_study.py                        # E9: industrial case, anonymised aggregates (data/case-edu-llm-2026)
 ```
 
 A non-expert model is five lines:

@@ -119,6 +119,7 @@ amlops schema -o amlops.schema.json                      # schéma JSON du DSL (
 pytest -q                                                # 70 tests
 python experiments/run_all.py                            # régénère tous les chiffres de l'article (E1 à E7)
 python experiments/sovereignty.py                        # E8 : prix de la souveraineté sur données publiques (data/public-2026-09-29)
+python experiments/case_study.py                        # E9 : cas industriel, agrégats anonymisés (data/case-edu-llm-2026)
 ```
 
 Un modèle non expert tient en cinq lignes :
