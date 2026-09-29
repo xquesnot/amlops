@@ -2,16 +2,16 @@
 
 \newcommand{\SovAlignTotal}{20}
 \newcommand{\SovAligned}{16}
-\newcommand{\SovCarbL0Max}{1.00}
-\newcommand{\SovCarbL0Min}{1.00}
-\newcommand{\SovCarbL1Max}{1.00}
-\newcommand{\SovCarbL1Min}{1.00}
-\newcommand{\SovCarbL2Max}{1.00}
-\newcommand{\SovCarbL2Min}{1.00}
-\newcommand{\SovCarbL3Max}{1.00}
-\newcommand{\SovCarbL3Min}{1.00}
-\newcommand{\SovCarbL4Max}{1.10}
-\newcommand{\SovCarbL4Min}{1.09}
+\newcommand{\SovCarbLFourMax}{1.10}
+\newcommand{\SovCarbLFourMin}{1.09}
+\newcommand{\SovCarbLOneMax}{1.00}
+\newcommand{\SovCarbLOneMin}{1.00}
+\newcommand{\SovCarbLThreeMax}{1.00}
+\newcommand{\SovCarbLThreeMin}{1.00}
+\newcommand{\SovCarbLTwoMax}{1.00}
+\newcommand{\SovCarbLTwoMin}{1.00}
+\newcommand{\SovCarbLZeroMax}{1.00}
+\newcommand{\SovCarbLZeroMin}{1.00}
 \newcommand{\SovEmbChanged}{0}
 \newcommand{\SovEmbShareMax}{53}
 \newcommand{\SovEmbShareMin}{42}
@@ -29,32 +29,32 @@
 \newcommand{\SovGridRatio}{14}
 \newcommand{\SovNOffers}{25}
 \newcommand{\SovNRegions}{9}
-\newcommand{\SovPremL0Max}{0}
-\newcommand{\SovPremL0Min}{0}
-\newcommand{\SovPremL1Max}{0}
-\newcommand{\SovPremL1Min}{0}
-\newcommand{\SovPremL1NoOvhMax}{0}
-\newcommand{\SovPremL1NoOvhMin}{0}
-\newcommand{\SovPremL1NoOvhScwMax}{15}
-\newcommand{\SovPremL1NoOvhScwMin}{12}
-\newcommand{\SovPremL2Max}{0}
-\newcommand{\SovPremL2Min}{0}
-\newcommand{\SovPremL2NoOvhMax}{0}
-\newcommand{\SovPremL2NoOvhMin}{0}
-\newcommand{\SovPremL2NoOvhScwMax}{0}
-\newcommand{\SovPremL2NoOvhScwMin}{0}
-\newcommand{\SovPremL3Max}{0}
-\newcommand{\SovPremL3Min}{0}
-\newcommand{\SovPremL3NoOvhMax}{0}
-\newcommand{\SovPremL3NoOvhMin}{0}
-\newcommand{\SovPremL3NoOvhScwMax}{39}
-\newcommand{\SovPremL3NoOvhScwMin}{35}
-\newcommand{\SovPremL4Max}{178}
-\newcommand{\SovPremL4Min}{174}
-\newcommand{\SovPremL4NoOvhMax}{95}
-\newcommand{\SovPremL4NoOvhMin}{90}
-\newcommand{\SovPremL4NoOvhScwMax}{39}
-\newcommand{\SovPremL4NoOvhScwMin}{35}
+\newcommand{\SovPremLFourMax}{178}
+\newcommand{\SovPremLFourMin}{174}
+\newcommand{\SovPremLFourNoOvhMax}{95}
+\newcommand{\SovPremLFourNoOvhMin}{90}
+\newcommand{\SovPremLFourNoOvhScwMax}{39}
+\newcommand{\SovPremLFourNoOvhScwMin}{35}
+\newcommand{\SovPremLOneMax}{0}
+\newcommand{\SovPremLOneMin}{0}
+\newcommand{\SovPremLOneNoOvhMax}{0}
+\newcommand{\SovPremLOneNoOvhMin}{0}
+\newcommand{\SovPremLOneNoOvhScwMax}{15}
+\newcommand{\SovPremLOneNoOvhScwMin}{12}
+\newcommand{\SovPremLThreeMax}{0}
+\newcommand{\SovPremLThreeMin}{0}
+\newcommand{\SovPremLThreeNoOvhMax}{0}
+\newcommand{\SovPremLThreeNoOvhMin}{0}
+\newcommand{\SovPremLThreeNoOvhScwMax}{39}
+\newcommand{\SovPremLThreeNoOvhScwMin}{35}
+\newcommand{\SovPremLTwoMax}{0}
+\newcommand{\SovPremLTwoMin}{0}
+\newcommand{\SovPremLTwoNoOvhMax}{0}
+\newcommand{\SovPremLTwoNoOvhMin}{0}
+\newcommand{\SovPremLTwoNoOvhScwMax}{0}
+\newcommand{\SovPremLTwoNoOvhScwMin}{0}
+\newcommand{\SovPremLZeroMax}{0}
+\newcommand{\SovPremLZeroMin}{0}
 \newcommand{\SovRetrieved}{2026-09-29}
 \newcommand{\SovShiftNaiveOneTwentyfour}{11}
 \newcommand{\SovShiftNaiveThreeTwelve}{9}
@@ -111,6 +111,33 @@ none & 0 to 0 & 0 to 0 & 0 to 0 & 174 to 178 \\
 OVHcloud & 0 to 0 & 0 to 0 & 0 to 0 & 90 to 95 \\
 Scaleway & 0 to 0 & 0 to 0 & 0 to 0 & 174 to 178 \\
 OVHcloud and Scaleway & 12 to 15 & 0 to 0 & 35 to 39 & 35 to 39 \\
+}
+\newcommand{\SovTabOffers}{%
+scaleway & fr-par & POP2-4C-16G & 0.147 & 20 & 0.8 & EU-HQ, HDS \\
+scaleway & fr-par & POP2-16C-64G & 0.590 & 80 & 3.0 & EU-HQ, HDS \\
+scaleway & nl-ams & POP2-4C-16G & 0.147 & 20 & 0.8 & EU-HQ, HDS \\
+scaleway & nl-ams & POP2-16C-64G & 0.590 & 80 & 3.0 & EU-HQ, HDS \\
+scaleway & pl-waw & POP2-4C-16G & 0.147 & 20 & 0.8 & EU-HQ, HDS \\
+scaleway & pl-waw & POP2-16C-64G & 0.590 & 80 & 3.0 & EU-HQ, HDS \\
+scaleway & fr-par & L4-1-24G & 0.787 & 48 & 5.3 & EU-HQ, HDS \\
+scaleway & pl-waw & L4-1-24G & 0.787 & 48 & 5.3 & EU-HQ, HDS \\
+ovhcloud & gra & b3-16 & 0.102 & 15 & 0.9 & EU-HQ, HDS \\
+ovhcloud & gra & b3-64 & 0.409 & 59 & 3.5 & EU-HQ, HDS \\
+ovhcloud & gra & l4-90 & 0.750 & 48 & 5.3 & EU-HQ, HDS \\
+ovhcloud & lim & b3-16 & 0.102 & 15 & 0.9 & EU-HQ, HDS \\
+ovhcloud & lim & b3-64 & 0.409 & 59 & 3.5 & EU-HQ, HDS \\
+outscale & eu-west-2 & tinav7.c4r16p2 & 0.232 & 20 & 0.8 & EU-HQ \\
+outscale & eu-west-2 & tinav7.c16r64p2 & 0.928 & 80 & 3.0 & EU-HQ \\
+outscale & eu-west-2 & tinav7.c8r48p1 + 1x flexible GPU L40 & 2.584 & 66 & 7.1 & EU-HQ \\
+outscale & cloudgouv-eu-west-1 & tinav7.c4r16p2 & 0.280 & 20 & 0.8 & EU-HQ, HDS, SNC \\
+outscale & cloudgouv-eu-west-1 & tinav7.c16r64p2 & 1.120 & 80 & 3.0 & EU-HQ, HDS, SNC \\
+outscale & cloudgouv-eu-west-1 & tinav7.c8r48p1 + 1x flexible GPU L40 & 3.104 & 66 & 7.1 & EU-HQ, HDS, SNC \\
+aws & eu-west-3 & m7i.xlarge & 0.207 & 22 & 0.8 & HDS \\
+aws & eu-west-3 & m7i.4xlarge & 0.827 & 88 & 3.1 & HDS \\
+aws & eu-west-3 & g6.xlarge & 0.898 & 48 & 5.3 & HDS \\
+aws & eu-central-1 & m7i.xlarge & 0.212 & 22 & 0.8 & HDS \\
+aws & eu-central-1 & m7i.4xlarge & 0.849 & 88 & 3.1 & HDS \\
+aws & eu-central-1 & g6.xlarge & 0.885 & 48 & 5.3 & HDS \\
 }
 \pgfplotstableread{
 hour mean p10 p90
